@@ -11,7 +11,8 @@ class Vechicle {
     public:
         Vechicle();
 
-        void move(std::string direction);
+        //TODO - okreslenie ile ma trwac skecanie kolami 
+        void move(std::string direction);  
         void moveForward();
         void moveLeft();
         void moveRight();
@@ -26,7 +27,7 @@ class Motor {
         Motor(uint8_t enable_, uint8_t dir1_, uint8_t dir2_);
 
         void setSpeed(int speed_);
-        void stop();
+        void stop(); // Emergency stop
 
 };
 
