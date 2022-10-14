@@ -1,5 +1,4 @@
 #include "userTypeDefs.hpp"
-
 #pragma once
 
 class Kalman {
