@@ -1,12 +1,13 @@
 // https://www.geeksforgeeks.org/socket-programming-cc/
 
 #include "TCPconnection.hpp"
-#include "myExceptions.hpp"
+
+TCP::TCP(PORT port_): port(port_) {}
 
 void TCP::setAddress() {
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
-    address.sin_port = htons(8000);
+    address.sin_port = htons(port);
 }
 
 void TCP::createSocket() {
@@ -23,16 +24,44 @@ void TCP::setSockOpt() {
 }
 
 void TCP::bindSocket() {
-        if(bind(serverfd, (sockaddr*) &address, sizeof(address)) < 0) {
+    if(bind(serverfd, (sockaddr*) &address, sizeof(address)) < 0) {
         throw TCPException("Error while binding socket");
     }
 }
 
+void TCP::listenForClients() {
+    if(listen(serverfd, 3) < 0) {
+        throw TCPException("Error while listening for client");
+    }
+}
 
+void TCP::acceptClient() {
+    newSocket = accept(serverfd, (struct sockaddr*)& address,(socklen_t*)& addrlen);
+    if(newSocket < 0) {
+        throw TCPException("Error while accepting");
+    }
+}
+
+std::string TCP::receiveData() {
+    std::string reply(15, ' ');
+    auto bytes_recv = recv(newSocket, &reply.front(), reply.size(), 0);
+    if (bytes_recv == -1) {
+        throw TCPException("Error while receiving bytes");
+    }
+}
+
+void TCP::sendData(std::string &data) {
+    send(newSocket, data.data(), data.length(), 0);
+}
 
 void TCP::createConnection() {
-    setAddres();
+    setAddress();
     createSocket();
     setSockOpt();
     bindSocket();
+}
+
+void TCP::closeConnection(){
+    close(newSocket);
+    close(serverfd);
 }

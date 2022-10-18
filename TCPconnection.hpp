@@ -1,29 +1,40 @@
-#include <sys/socket.h>
 #include <arpa/inet.h>
+#include <netdb.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <unistd.h> 
+
 #include <string> 
+
+#include "userTypeDefs.hpp"
+#include "myExceptions.hpp"
+
 #pragma once
 
 class TCP {
     private:
-        int serverfd, newSocket, valread;
-        sockaddr_in address;
-        int opt = 1;
+        PORT port;
+
+        int serverfd, newSocket;
+        struct sockaddr_in address;
         int addrlen = sizeof(address);
+        int opt = 1;
 
-        char buffer[1024] = {0};
+        // char buffer[1024] = {0};
 
-        void setAddres();
+        void setAddress();
         void createSocket();
         void setSockOpt();
         void bindSocket();
-        void setAddress();
+        void listenForClients();
+        void acceptClient();
     
     public:
-        TCP();
+        TCP(PORT port);
 
         void createConnection();
-
-        std::string sendData(std::string &data);
-        void receiveData();
+        void closeConnection();
+        void sendData(std::string &data);
+        std::string  receiveData();
 
 };
