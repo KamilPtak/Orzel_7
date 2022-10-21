@@ -5,6 +5,7 @@
 #include <unistd.h> 
 
 #include <string> 
+#include <iostream>
 
 #include "userTypeDefs.hpp"
 #include "myExceptions.hpp"
@@ -34,7 +35,7 @@ class TCP {
 
         void createConnection();
         void closeConnection();
-        void sendData(std::string &data);
-        std::string  receiveData();
+        void sendData(std::string& data);
+        auto receiveData();
 
 };
