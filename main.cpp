@@ -1,5 +1,5 @@
 #include <iostream>
-#include "TCPconnection.cpp" //przy rozszeeniu .cpp jakims cudem dziala - teraz nie widzi definicji funkcji z tcp.cpp
+#include "TCPconnection.hpp" //przy rozszeeniu .cpp jakims cudem dziala - teraz nie widzi definicji funkcji z tcp.cpp
 
 uint port;
 

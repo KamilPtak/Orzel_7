@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/Orzel_7.dir/main.cpp.o  -o Orzel_7 
