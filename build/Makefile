@@ -215,32 +215,59 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/motorControl.o: src/motorControl.cpp.o
+src/motor.o: src/motor.cpp.o
 
-.PHONY : src/motorControl.o
+.PHONY : src/motor.o
 
 # target to build an object file
-src/motorControl.cpp.o:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/motorControl.cpp.o
-.PHONY : src/motorControl.cpp.o
+src/motor.cpp.o:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/motor.cpp.o
+.PHONY : src/motor.cpp.o
 
-src/motorControl.i: src/motorControl.cpp.i
+src/motor.i: src/motor.cpp.i
 
-.PHONY : src/motorControl.i
+.PHONY : src/motor.i
 
 # target to preprocess a source file
-src/motorControl.cpp.i:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/motorControl.cpp.i
-.PHONY : src/motorControl.cpp.i
+src/motor.cpp.i:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/motor.cpp.i
+.PHONY : src/motor.cpp.i
 
-src/motorControl.s: src/motorControl.cpp.s
+src/motor.s: src/motor.cpp.s
 
-.PHONY : src/motorControl.s
+.PHONY : src/motor.s
 
 # target to generate assembly for a file
-src/motorControl.cpp.s:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/motorControl.cpp.s
-.PHONY : src/motorControl.cpp.s
+src/motor.cpp.s:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/motor.cpp.s
+.PHONY : src/motor.cpp.s
+
+src/vechicle.o: src/vechicle.cpp.o
+
+.PHONY : src/vechicle.o
+
+# target to build an object file
+src/vechicle.cpp.o:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o
+.PHONY : src/vechicle.cpp.o
+
+src/vechicle.i: src/vechicle.cpp.i
+
+.PHONY : src/vechicle.i
+
+# target to preprocess a source file
+src/vechicle.cpp.i:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/vechicle.cpp.i
+.PHONY : src/vechicle.cpp.i
+
+src/vechicle.s: src/vechicle.cpp.s
+
+.PHONY : src/vechicle.s
+
+# target to generate assembly for a file
+src/vechicle.cpp.s:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/vechicle.cpp.s
+.PHONY : src/vechicle.cpp.s
 
 # Help Target
 help:
@@ -261,9 +288,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/motorControl.o"
-	@echo "... src/motorControl.i"
-	@echo "... src/motorControl.s"
+	@echo "... src/motor.o"
+	@echo "... src/motor.i"
+	@echo "... src/motor.s"
+	@echo "... src/vechicle.o"
+	@echo "... src/vechicle.i"
+	@echo "... src/vechicle.s"
 .PHONY : help
 
 

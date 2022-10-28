@@ -1,11 +1,10 @@
 #include <iostream>
 #include "TCPconnection.hpp" //przy rozszeeniu .cpp jakims cudem dziala - teraz nie widzi definicji funkcji z tcp.cpp
+#include "vechicle.hpp"
 
 #define SPEAKER 0
 #define LISTENER 1
-
 uint port = 80016;
-
 
 int main(int argc, char *argv[]) {
 
@@ -17,11 +16,13 @@ int main(int argc, char *argv[]) {
         std::cerr<<"The program launched on port "<< port<<"\n";
     }
 
-
+    Vechicle* vechicle = new Vechicle();
     TCPServer* tcp = new TCPServer(port);
+
     try{
         std::string rcvData = "";
         tcp->createConnection();
+        
         while(rcvData != "close") {
             rcvData = tcp->receiveData(SPEAKER);
             std::cout<<rcvData<<"\n";
@@ -35,6 +36,7 @@ int main(int argc, char *argv[]) {
 
     tcp->closeConnection();
     delete tcp;    
+    delete vechicle;
     
     return 0;
 }

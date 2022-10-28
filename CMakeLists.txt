@@ -9,11 +9,13 @@ include_directories(${src})
 
 add_executable("${PROJECT_NAME}"    src/main.cpp
                                     src/kalman.cpp
-                                    src/motorControl.cpp
+                                    src/motor.cpp
+                                    src/vechicle.cpp
                                     src/TCPconnection.cpp
                                     
                                     inc/kalman.hpp
-                                    inc/motorControl.hpp
+                                    inc/motor.hpp
+                                    inc/vechicle.hpp
                                     inc/myExceptions.hpp
                                     inc/userTypeDefs.hpp
                                     inc/TCPconnection.hpp

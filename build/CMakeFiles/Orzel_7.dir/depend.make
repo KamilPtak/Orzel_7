@@ -9,10 +9,17 @@ CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o: ../src/TCPconnection.cpp
 CMakeFiles/Orzel_7.dir/src/kalman.cpp.o: ../src/kalman.cpp
 
 CMakeFiles/Orzel_7.dir/src/main.cpp.o: ../inc/TCPconnection.hpp
+CMakeFiles/Orzel_7.dir/src/main.cpp.o: ../inc/motor.hpp
 CMakeFiles/Orzel_7.dir/src/main.cpp.o: ../inc/myExceptions.hpp
 CMakeFiles/Orzel_7.dir/src/main.cpp.o: ../inc/userTypeDefs.hpp
+CMakeFiles/Orzel_7.dir/src/main.cpp.o: ../inc/vechicle.hpp
 CMakeFiles/Orzel_7.dir/src/main.cpp.o: ../src/main.cpp
 
-CMakeFiles/Orzel_7.dir/src/motorControl.cpp.o: ../inc/motorControl.hpp
-CMakeFiles/Orzel_7.dir/src/motorControl.cpp.o: ../src/motorControl.cpp
+CMakeFiles/Orzel_7.dir/src/motor.cpp.o: ../inc/motor.hpp
+CMakeFiles/Orzel_7.dir/src/motor.cpp.o: ../src/motor.cpp
+
+CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o: ../inc/motor.hpp
+CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o: ../inc/myExceptions.hpp
+CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o: ../inc/vechicle.hpp
+CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o: ../src/vechicle.cpp
 

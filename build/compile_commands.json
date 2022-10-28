@@ -1,22 +1,27 @@
 [
 {
   "directory": "/home/kamil/Desktop/Orzel_7/build",
-  "command": "/usr/bin/g++   -I/home/kamil/Desktop/Orzel_7/scr -I/home/kamil/Desktop/Orzel_7/inc  -g   -std=gnu++14 -o CMakeFiles/Orzel_7.dir/src/main.cpp.o -c /home/kamil/Desktop/Orzel_7/src/main.cpp",
+  "command": "/usr/bin/g++   -I/home/kamil/Desktop/Orzel_7/scr -I/home/kamil/Desktop/Orzel_7/inc  -Os -DNDEBUG   -std=gnu++14 -o CMakeFiles/Orzel_7.dir/src/main.cpp.o -c /home/kamil/Desktop/Orzel_7/src/main.cpp",
   "file": "/home/kamil/Desktop/Orzel_7/src/main.cpp"
 },
 {
   "directory": "/home/kamil/Desktop/Orzel_7/build",
-  "command": "/usr/bin/g++   -I/home/kamil/Desktop/Orzel_7/scr -I/home/kamil/Desktop/Orzel_7/inc  -g   -std=gnu++14 -o CMakeFiles/Orzel_7.dir/src/kalman.cpp.o -c /home/kamil/Desktop/Orzel_7/src/kalman.cpp",
+  "command": "/usr/bin/g++   -I/home/kamil/Desktop/Orzel_7/scr -I/home/kamil/Desktop/Orzel_7/inc  -Os -DNDEBUG   -std=gnu++14 -o CMakeFiles/Orzel_7.dir/src/kalman.cpp.o -c /home/kamil/Desktop/Orzel_7/src/kalman.cpp",
   "file": "/home/kamil/Desktop/Orzel_7/src/kalman.cpp"
 },
 {
   "directory": "/home/kamil/Desktop/Orzel_7/build",
-  "command": "/usr/bin/g++   -I/home/kamil/Desktop/Orzel_7/scr -I/home/kamil/Desktop/Orzel_7/inc  -g   -std=gnu++14 -o CMakeFiles/Orzel_7.dir/src/motorControl.cpp.o -c /home/kamil/Desktop/Orzel_7/src/motorControl.cpp",
-  "file": "/home/kamil/Desktop/Orzel_7/src/motorControl.cpp"
+  "command": "/usr/bin/g++   -I/home/kamil/Desktop/Orzel_7/scr -I/home/kamil/Desktop/Orzel_7/inc  -Os -DNDEBUG   -std=gnu++14 -o CMakeFiles/Orzel_7.dir/src/motor.cpp.o -c /home/kamil/Desktop/Orzel_7/src/motor.cpp",
+  "file": "/home/kamil/Desktop/Orzel_7/src/motor.cpp"
 },
 {
   "directory": "/home/kamil/Desktop/Orzel_7/build",
-  "command": "/usr/bin/g++   -I/home/kamil/Desktop/Orzel_7/scr -I/home/kamil/Desktop/Orzel_7/inc  -g   -std=gnu++14 -o CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o -c /home/kamil/Desktop/Orzel_7/src/TCPconnection.cpp",
+  "command": "/usr/bin/g++   -I/home/kamil/Desktop/Orzel_7/scr -I/home/kamil/Desktop/Orzel_7/inc  -Os -DNDEBUG   -std=gnu++14 -o CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o -c /home/kamil/Desktop/Orzel_7/src/vechicle.cpp",
+  "file": "/home/kamil/Desktop/Orzel_7/src/vechicle.cpp"
+},
+{
+  "directory": "/home/kamil/Desktop/Orzel_7/build",
+  "command": "/usr/bin/g++   -I/home/kamil/Desktop/Orzel_7/scr -I/home/kamil/Desktop/Orzel_7/inc  -Os -DNDEBUG   -std=gnu++14 -o CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o -c /home/kamil/Desktop/Orzel_7/src/TCPconnection.cpp",
   "file": "/home/kamil/Desktop/Orzel_7/src/TCPconnection.cpp"
 }
 ]

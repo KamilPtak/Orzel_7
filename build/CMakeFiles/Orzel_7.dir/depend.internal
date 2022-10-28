@@ -10,9 +10,16 @@ CMakeFiles/Orzel_7.dir/src/kalman.cpp.o
  /home/kamil/Desktop/Orzel_7/src/kalman.cpp
 CMakeFiles/Orzel_7.dir/src/main.cpp.o
  ../inc/TCPconnection.hpp
+ ../inc/motor.hpp
  ../inc/myExceptions.hpp
  ../inc/userTypeDefs.hpp
+ ../inc/vechicle.hpp
  /home/kamil/Desktop/Orzel_7/src/main.cpp
-CMakeFiles/Orzel_7.dir/src/motorControl.cpp.o
- ../inc/motorControl.hpp
- /home/kamil/Desktop/Orzel_7/src/motorControl.cpp
+CMakeFiles/Orzel_7.dir/src/motor.cpp.o
+ ../inc/motor.hpp
+ /home/kamil/Desktop/Orzel_7/src/motor.cpp
+CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o
+ ../inc/motor.hpp
+ ../inc/myExceptions.hpp
+ ../inc/vechicle.hpp
+ /home/kamil/Desktop/Orzel_7/src/vechicle.cpp
