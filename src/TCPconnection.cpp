@@ -49,13 +49,14 @@ void TCPServer::acceptClient() {
     std::cerr<<"Client connected!"<<"\n";
 }
 
-auto TCPServer::receiveData(int client) {
-    std::string reply(15, ' ');
-    auto rcvData = recv(clientsList[client], &reply.front(), reply.size(), 0);
+std::string TCPServer::receiveData(int client) {
+    std::string reply(1024, ' ');
+    int rcvData = recv(clientsList[client], &reply.front(), reply.size(), 0);
     if (rcvData == -1) {
         throw TCPException("Error while receiving bytes");
     }
-    return rcvData;
+    reply.erase(std::remove_if(reply.begin(), reply.end(), ::isspace),reply.end());
+    return reply;
 }
 
 void TCPServer::sendData(int client, std::string &data) {
@@ -66,15 +67,22 @@ void TCPServer::createConnection() {
     createSocket();
     setSockOpt();
     bindSocket();
-    while(numOfClients != 2) {
-        listenForClients();
-        acceptClient();
-    }
+    listenForClients();
+    acceptClient();
 }
+
+int TCPServer::isConnectionAlive(int socket) {
+    int error_code;
+    socklen_t error_code_size = sizeof(error_code);
+    return getsockopt(socket, SOL_SOCKET, SO_ERROR, &error_code, &error_code_size);
+} 
 
 void TCPServer::closeConnection(){
     for(auto elem: clientsList) {
-        close(elem);
+        if(isConnectionAlive(elem) != -1) {
+            close(elem);
+            std::cerr<<"Connenction closed for client number "<<elem<<"\n";
+        }
     }
     close(serverfd);
 }

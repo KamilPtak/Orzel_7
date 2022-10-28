@@ -1,5 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Orzel_7.dir/main.cpp.o"
+  "CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o"
+  "CMakeFiles/Orzel_7.dir/src/kalman.cpp.o"
+  "CMakeFiles/Orzel_7.dir/src/main.cpp.o"
+  "CMakeFiles/Orzel_7.dir/src/motorControl.cpp.o"
   "Orzel_7"
   "Orzel_7.pdb"
 )

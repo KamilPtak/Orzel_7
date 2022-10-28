@@ -1,3 +1,4 @@
 /home/kamil/Desktop/Orzel_7/build/CMakeFiles/edit_cache.dir
+/home/kamil/Desktop/Orzel_7/build/CMakeFiles/test.dir
 /home/kamil/Desktop/Orzel_7/build/CMakeFiles/rebuild_cache.dir
 /home/kamil/Desktop/Orzel_7/build/CMakeFiles/Orzel_7.dir

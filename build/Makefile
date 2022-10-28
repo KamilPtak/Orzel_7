@@ -67,6 +67,17 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -123,32 +134,113 @@ Orzel_7/fast:
 	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/build
 .PHONY : Orzel_7/fast
 
-main.o: main.cpp.o
+src/TCPconnection.o: src/TCPconnection.cpp.o
 
-.PHONY : main.o
+.PHONY : src/TCPconnection.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/main.cpp.o
-.PHONY : main.cpp.o
+src/TCPconnection.cpp.o:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o
+.PHONY : src/TCPconnection.cpp.o
 
-main.i: main.cpp.i
+src/TCPconnection.i: src/TCPconnection.cpp.i
 
-.PHONY : main.i
+.PHONY : src/TCPconnection.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/TCPconnection.cpp.i:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.i
+.PHONY : src/TCPconnection.cpp.i
 
-main.s: main.cpp.s
+src/TCPconnection.s: src/TCPconnection.cpp.s
 
-.PHONY : main.s
+.PHONY : src/TCPconnection.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/TCPconnection.cpp.s:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.s
+.PHONY : src/TCPconnection.cpp.s
+
+src/kalman.o: src/kalman.cpp.o
+
+.PHONY : src/kalman.o
+
+# target to build an object file
+src/kalman.cpp.o:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/kalman.cpp.o
+.PHONY : src/kalman.cpp.o
+
+src/kalman.i: src/kalman.cpp.i
+
+.PHONY : src/kalman.i
+
+# target to preprocess a source file
+src/kalman.cpp.i:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/kalman.cpp.i
+.PHONY : src/kalman.cpp.i
+
+src/kalman.s: src/kalman.cpp.s
+
+.PHONY : src/kalman.s
+
+# target to generate assembly for a file
+src/kalman.cpp.s:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/kalman.cpp.s
+.PHONY : src/kalman.cpp.s
+
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/motorControl.o: src/motorControl.cpp.o
+
+.PHONY : src/motorControl.o
+
+# target to build an object file
+src/motorControl.cpp.o:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/motorControl.cpp.o
+.PHONY : src/motorControl.cpp.o
+
+src/motorControl.i: src/motorControl.cpp.i
+
+.PHONY : src/motorControl.i
+
+# target to preprocess a source file
+src/motorControl.cpp.i:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/motorControl.cpp.i
+.PHONY : src/motorControl.cpp.i
+
+src/motorControl.s: src/motorControl.cpp.s
+
+.PHONY : src/motorControl.s
+
+# target to generate assembly for a file
+src/motorControl.cpp.s:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/motorControl.cpp.s
+.PHONY : src/motorControl.cpp.s
 
 # Help Target
 help:
@@ -157,11 +249,21 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... test"
 	@echo "... rebuild_cache"
 	@echo "... Orzel_7"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... src/TCPconnection.o"
+	@echo "... src/TCPconnection.i"
+	@echo "... src/TCPconnection.s"
+	@echo "... src/kalman.o"
+	@echo "... src/kalman.i"
+	@echo "... src/kalman.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/motorControl.o"
+	@echo "... src/motorControl.i"
+	@echo "... src/motorControl.s"
 .PHONY : help
 
 

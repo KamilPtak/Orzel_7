@@ -6,3 +6,13 @@
 
 #IncludeRegexTransform: 
 
+../inc/motorControl.hpp
+vector
+-
+string
+-
+
+/home/kamil/Desktop/Orzel_7/src/motorControl.cpp
+motorControl.hpp
+/home/kamil/Desktop/Orzel_7/src/motorControl.hpp
+

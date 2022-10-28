@@ -7,6 +7,7 @@
 #include <string> 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #include "userTypeDefs.hpp"
 #include "myExceptions.hpp"
@@ -37,9 +38,10 @@ class TCPServer {
         void createConnection();
         void closeConnection();
         void sendData(int client,std::string& data);
-        auto receiveData(int client);
+        std::string receiveData(int client);
 
         int getNumOfClients() {return numOfClients;}
+        int isConnectionAlive(int socket);
 
         ~TCPServer();
 };

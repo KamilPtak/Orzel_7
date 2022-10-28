@@ -2,21 +2,6 @@
 #include <string>
 #pragma once
 
-class Vechicle {
-    private:
-        Motor rightMotor;
-        Motor leftMotor;
-
-    public:
-        Vechicle();
-
-        //TODO - okreslenie ile ma trwac skecanie kolami 
-        void move(std::string direction);  
-        void moveForward();
-        void moveLeft();
-        void moveRight();
-};
-
 class Motor {
     private:
         int speed; // PWM 0-100
@@ -27,6 +12,8 @@ class Motor {
 
         void setSpeed(int speed_);
         void stop(); // Emergency stop
+        void turnForward();
+        void turnBack();
 
 };
 
@@ -35,4 +22,23 @@ class Motor {
 class Accelerometr {
     private:
     public:
+};
+
+
+class Vechicle {
+    private:
+        Motor motorR1;
+        Motor motorR2;
+        Motor motorL1;
+        Motor motorL2;
+
+    public:
+        Vechicle();
+
+        //TODO - okreslenie ile ma trwac skecanie kolami 
+        void move(std::string direction);  
+        void moveForward();
+        void moveBack();
+        void moveLeft();
+        void moveRight();
 };

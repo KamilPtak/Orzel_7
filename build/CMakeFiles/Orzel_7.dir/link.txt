@@ -1,1 +1,1 @@
-/usr/bin/c++     CMakeFiles/Orzel_7.dir/main.cpp.o  -o Orzel_7 
+/usr/bin/g++  -g   CMakeFiles/Orzel_7.dir/src/main.cpp.o CMakeFiles/Orzel_7.dir/src/kalman.cpp.o CMakeFiles/Orzel_7.dir/src/motorControl.cpp.o CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o  -o Orzel_7 
