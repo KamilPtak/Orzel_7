@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/kamil/Desktop/Orzel_7/src/TCPconnection.cpp" "/home/kamil/Desktop/Orzel_7/build/CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o"
+  "/home/kamil/Desktop/Orzel_7/src/adxl345.cpp" "/home/kamil/Desktop/Orzel_7/build/CMakeFiles/Orzel_7.dir/src/adxl345.cpp.o"
   "/home/kamil/Desktop/Orzel_7/src/kalman.cpp" "/home/kamil/Desktop/Orzel_7/build/CMakeFiles/Orzel_7.dir/src/kalman.cpp.o"
   "/home/kamil/Desktop/Orzel_7/src/main.cpp" "/home/kamil/Desktop/Orzel_7/build/CMakeFiles/Orzel_7.dir/src/main.cpp.o"
   "/home/kamil/Desktop/Orzel_7/src/motor.cpp" "/home/kamil/Desktop/Orzel_7/build/CMakeFiles/Orzel_7.dir/src/motor.cpp.o"

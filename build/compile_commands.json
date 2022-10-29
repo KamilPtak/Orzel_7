@@ -28,5 +28,10 @@
   "directory": "/home/kamil/Desktop/Orzel_7/build",
   "command": "/usr/bin/g++   -I/home/kamil/Desktop/Orzel_7/scr -I/home/kamil/Desktop/Orzel_7/inc  -Os -DNDEBUG   -std=gnu++14 -o CMakeFiles/Orzel_7.dir/src/uart.cpp.o -c /home/kamil/Desktop/Orzel_7/src/uart.cpp",
   "file": "/home/kamil/Desktop/Orzel_7/src/uart.cpp"
+},
+{
+  "directory": "/home/kamil/Desktop/Orzel_7/build",
+  "command": "/usr/bin/g++   -I/home/kamil/Desktop/Orzel_7/scr -I/home/kamil/Desktop/Orzel_7/inc  -Os -DNDEBUG   -std=gnu++14 -o CMakeFiles/Orzel_7.dir/src/adxl345.cpp.o -c /home/kamil/Desktop/Orzel_7/src/adxl345.cpp",
+  "file": "/home/kamil/Desktop/Orzel_7/src/adxl345.cpp"
 }
 ]

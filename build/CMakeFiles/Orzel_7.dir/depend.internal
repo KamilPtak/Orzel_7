@@ -6,12 +6,18 @@ CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o
  ../inc/myExceptions.hpp
  ../inc/userTypeDefs.hpp
  /home/kamil/Desktop/Orzel_7/src/TCPconnection.cpp
+CMakeFiles/Orzel_7.dir/src/adxl345.cpp.o
+ ../inc/adxl345.hpp
+ /home/kamil/Desktop/Orzel_7/src/adxl345.cpp
 CMakeFiles/Orzel_7.dir/src/kalman.cpp.o
  /home/kamil/Desktop/Orzel_7/src/kalman.cpp
 CMakeFiles/Orzel_7.dir/src/main.cpp.o
  ../inc/TCPconnection.hpp
+ ../inc/adxl345.hpp
+ ../inc/kalman.hpp
  ../inc/motor.hpp
  ../inc/myExceptions.hpp
+ ../inc/uart.hpp
  ../inc/userTypeDefs.hpp
  ../inc/vechicle.hpp
  /home/kamil/Desktop/Orzel_7/src/main.cpp
@@ -23,7 +29,9 @@ CMakeFiles/Orzel_7.dir/src/uart.cpp.o
  ../inc/uart.hpp
  /home/kamil/Desktop/Orzel_7/src/uart.cpp
 CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o
+ ../inc/adxl345.hpp
  ../inc/motor.hpp
  ../inc/myExceptions.hpp
+ ../inc/uart.hpp
  ../inc/vechicle.hpp
  /home/kamil/Desktop/Orzel_7/src/vechicle.cpp

@@ -13,6 +13,7 @@ add_executable("${PROJECT_NAME}"    src/main.cpp
                                     src/vechicle.cpp
                                     src/TCPconnection.cpp
                                     src/uart.cpp
+                                    src/adxl345.cpp
                                     
                                     inc/kalman.hpp
                                     inc/motor.hpp
@@ -21,6 +22,7 @@ add_executable("${PROJECT_NAME}"    src/main.cpp
                                     inc/userTypeDefs.hpp
                                     inc/TCPconnection.hpp
                                     inc/uart.hpp
+                                    inc/adxl345.hpp
                                     )
 
 target_include_directories("${PROJECT_NAME}" PRIVATE scr inc)

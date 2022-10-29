@@ -6,29 +6,11 @@
 
 #IncludeRegexTransform: 
 
-../inc/TCPconnection.hpp
-arpa/inet.h
--
-netdb.h
--
-sys/socket.h
--
-sys/types.h
--
-unistd.h
--
-string
--
-iostream
+../inc/adxl345.hpp
+stdint.h
 -
 vector
 -
-algorithm
--
-userTypeDefs.hpp
-../inc/userTypeDefs.hpp
-myExceptions.hpp
-../inc/myExceptions.hpp
 
 ../inc/motor.hpp
 vector
@@ -42,21 +24,39 @@ exception
 string
 -
 
-../inc/userTypeDefs.hpp
-vector
+../inc/uart.hpp
+stdio.h
+-
+string.h
+-
+iostream
+-
+fcntl.h
+-
+errno.h
+-
+termios.h
+-
+unistd.h
+-
+myExceptions.hpp
+../inc/myExceptions.hpp
+
+../inc/vechicle.hpp
+iostream
 -
 string
 -
-
-../inc/vechicle.hpp
 motor.hpp
 ../inc/motor.hpp
+adxl345.hpp
+../inc/adxl345.hpp
+uart.hpp
+../inc/uart.hpp
+myExceptions.hpp
+../inc/myExceptions.hpp
 
-/home/kamil/Desktop/Orzel_7/src/main.cpp
-iostream
--
-TCPconnection.hpp
-/home/kamil/Desktop/Orzel_7/src/TCPconnection.hpp
+/home/kamil/Desktop/Orzel_7/src/vechicle.cpp
 vechicle.hpp
 /home/kamil/Desktop/Orzel_7/src/vechicle.hpp
 

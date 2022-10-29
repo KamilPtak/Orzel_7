@@ -1,4 +1,6 @@
+#include <stdint.h>
 #include <vector>
+#pragma once
 
 class ADXL { 
     private:

@@ -12,7 +12,7 @@ class Kalman {
 	public:
 		Kalman();
 		Kalman(matrix& A_, matrix& C_, matrix& Q_, matrix& R_, matrix& P_);
-		
+		~Kalman();
 };
 
 

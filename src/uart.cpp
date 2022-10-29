@@ -48,3 +48,7 @@ void UART::pushData(std::string data) {
         throw Exception("UART", "Error while sending data!");
     }
 }
+
+UART::~UART(){
+    close(serialPort);
+}

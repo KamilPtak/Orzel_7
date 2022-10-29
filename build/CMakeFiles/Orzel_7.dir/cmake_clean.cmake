@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o"
+  "CMakeFiles/Orzel_7.dir/src/adxl345.cpp.o"
   "CMakeFiles/Orzel_7.dir/src/kalman.cpp.o"
   "CMakeFiles/Orzel_7.dir/src/main.cpp.o"
   "CMakeFiles/Orzel_7.dir/src/motor.cpp.o"

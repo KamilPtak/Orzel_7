@@ -1,7 +1,4 @@
-#include <iostream>
-
 #include "vechicle.hpp"
-#include "myExceptions.hpp"
 
 Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     // Motor* motorL1 = new Motor(): enable(), dir1(), dir2() {}
@@ -10,12 +7,36 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     Motor* motorL2 = new Motor();
     Motor* motorR1 = new Motor();
     Motor* motorR2 = new Motor();
+    UART * uart = new UART("/dev/ttyS0", 9600);
  }
 
  void Vechicle::resetPosition() {
     xPos = 0;
     yPos = 0;
  }
+
+
+
+void Vechicle::decodeMessageFromClient(std::string msg) {
+    uint8_t pos = msg.find(" ");
+    std::string dir1, dir2;
+
+    if(pos > msg.length()){
+        move(msg);
+    }
+    else {
+        for(int i=0; i<msg.length(); i++) {
+            if(i < pos) {
+                dir1.push_back(msg[i]);
+            }
+            if(i > pos) {
+                dir2.push_back(msg[i]);
+            }
+        }
+
+        move(std::stoi(dir1), std::stoi(dir2));
+    }
+}
 
 void Vechicle::move(std::string direction) {
     if(direction == "forward") {
@@ -30,45 +51,51 @@ void Vechicle::move(std::string direction) {
     else if (direction == "right") {
         moveRight();
     }
-    else if(direction == "close") {
+    else if(direction == "stop") {
         moveStop();
     }
     else {
+        moveStop();
         throw Exception("Vechicle", "Unknown command!");
     }
 }
 
 void Vechicle::move(int xTarget, int yTarget) {
-
     if(xTarget < xPos) {
         moveForward();
         while(xTarget < xPos) {
-        // kalmanFilter -> getEstimatedPosition 
+        // kalmanFilter -> getEstimatedPosition()
         // aktualizujemy pozycje robota
         }
     }
     else {
         moveBack();
         while(xTarget > xPos) {
-        // kalmanFilter -> getEstimatedPosition 
+        // kalmanFilter -> getEstimatedPosition()
         // aktualizujemy pozycje robota
         }
     }
 
     if(yTarget < yPos) {
-    moveRight();
-    while(yTarget < yPos) {
-    // kalmanFilter -> getEstimatedPosition 
-    // aktualizujemy pozycje robota
+        moveRight();
+        while(yTarget < yPos) {
+        // kalmanFilter -> getEstimatedPosition()
+        // aktualizujemy pozycje robota
     }
     }
     else {
         moveLeft();
         while(yTarget > yPos) {
-        // kalmanFilter -> getEstimatedPosition 
+        // kalmanFilter -> getEstimatedPosition()
         // aktualizujemy pozycje robota
         }
     }
+}
+
+void Vechicle::sendMoveData(){
+    std::string moveBitsToSend;
+    moveBitsToSend = motorL1->packDataToSend() + motorL2->packDataToSend() + motorR1->packDataToSend() + motorR2->packDataToSend();
+    uart->pushData(moveBitsToSend);
 }
 
 void Vechicle::moveForward() {
@@ -76,30 +103,35 @@ void Vechicle::moveForward() {
     motorL2->turnForward();
     motorR1->turnForward();
     motorR2->turnForward();
+    sendMoveData();
 }
 void Vechicle::moveBack() {
     motorL1->turnBack();
     motorL2->turnBack();
     motorR1->turnBack();
     motorR2->turnBack();
+    sendMoveData();
 }
 void Vechicle::moveLeft() {
     motorL1->turnBack();
     motorL2->turnForward();
     motorR1->turnForward();
     motorR2->turnBack();
+    sendMoveData();
 }
 void Vechicle::moveRight() {
     motorL1->turnForward();
     motorL2->turnBack();
     motorR1->turnBack();
     motorR2->turnForward();
+    sendMoveData();
 }
 void Vechicle::moveStop() {
     motorL1->stop();
     motorL2->stop();
     motorR1->stop();
     motorR2->stop();
+    sendMoveData();
 }
 
 void Vechicle::printEsimatedPosition() {

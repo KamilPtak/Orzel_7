@@ -161,6 +161,33 @@ src/TCPconnection.cpp.s:
 	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.s
 .PHONY : src/TCPconnection.cpp.s
 
+src/adxl345.o: src/adxl345.cpp.o
+
+.PHONY : src/adxl345.o
+
+# target to build an object file
+src/adxl345.cpp.o:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/adxl345.cpp.o
+.PHONY : src/adxl345.cpp.o
+
+src/adxl345.i: src/adxl345.cpp.i
+
+.PHONY : src/adxl345.i
+
+# target to preprocess a source file
+src/adxl345.cpp.i:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/adxl345.cpp.i
+.PHONY : src/adxl345.cpp.i
+
+src/adxl345.s: src/adxl345.cpp.s
+
+.PHONY : src/adxl345.s
+
+# target to generate assembly for a file
+src/adxl345.cpp.s:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/adxl345.cpp.s
+.PHONY : src/adxl345.cpp.s
+
 src/kalman.o: src/kalman.cpp.o
 
 .PHONY : src/kalman.o
@@ -309,6 +336,9 @@ help:
 	@echo "... src/TCPconnection.o"
 	@echo "... src/TCPconnection.i"
 	@echo "... src/TCPconnection.s"
+	@echo "... src/adxl345.o"
+	@echo "... src/adxl345.i"
+	@echo "... src/adxl345.s"
 	@echo "... src/kalman.o"
 	@echo "... src/kalman.i"
 	@echo "... src/kalman.s"

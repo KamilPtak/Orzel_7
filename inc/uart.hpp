@@ -25,4 +25,5 @@ class UART{
         void openSerialPort();
         void closeSerialPort();
         void pushData(std::string data);
+        ~UART();
 };
