@@ -31,7 +31,6 @@ class TCPServer {
         void listenForClients();
         void acceptClient();
         
-    
     public:
         TCPServer(uint port);
 
