@@ -29,13 +29,12 @@ int main(int argc, char *argv[]) {
             rcvData = tcp->receiveData(SPEAKER);
             std::cout<<rcvData<<"\n";
 
+            vechicle->decodeMessageFromClient(rcvData);
         }
     }
     catch (Exception& e){
         std::cerr<<"Exception!!!"<<"\n"<<e.what()<<"\n";  
     }
-
-
 
     delete tcp;    
     delete vechicle;
