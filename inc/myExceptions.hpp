@@ -32,3 +32,14 @@ class VechicleException : public Exception {
             return message;
         }
 };
+
+class UARTException : public Exception {
+    private:
+        std::string message;
+
+    public:
+        UARTException(std::string msg): message(msg) {}
+        virtual std::string what() override {
+            return message;
+        }
+};

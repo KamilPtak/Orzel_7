@@ -12,6 +12,7 @@ add_executable("${PROJECT_NAME}"    src/main.cpp
                                     src/motor.cpp
                                     src/vechicle.cpp
                                     src/TCPconnection.cpp
+                                    src/uart.cpp
                                     
                                     inc/kalman.hpp
                                     inc/motor.hpp
@@ -19,6 +20,7 @@ add_executable("${PROJECT_NAME}"    src/main.cpp
                                     inc/myExceptions.hpp
                                     inc/userTypeDefs.hpp
                                     inc/TCPconnection.hpp
+                                    inc/uart.hpp
                                     )
 
 target_include_directories("${PROJECT_NAME}" PRIVATE scr inc)

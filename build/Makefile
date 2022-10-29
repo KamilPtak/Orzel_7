@@ -242,6 +242,33 @@ src/motor.cpp.s:
 	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/motor.cpp.s
 .PHONY : src/motor.cpp.s
 
+src/uart.o: src/uart.cpp.o
+
+.PHONY : src/uart.o
+
+# target to build an object file
+src/uart.cpp.o:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/uart.cpp.o
+.PHONY : src/uart.cpp.o
+
+src/uart.i: src/uart.cpp.i
+
+.PHONY : src/uart.i
+
+# target to preprocess a source file
+src/uart.cpp.i:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/uart.cpp.i
+.PHONY : src/uart.cpp.i
+
+src/uart.s: src/uart.cpp.s
+
+.PHONY : src/uart.s
+
+# target to generate assembly for a file
+src/uart.cpp.s:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/uart.cpp.s
+.PHONY : src/uart.cpp.s
+
 src/vechicle.o: src/vechicle.cpp.o
 
 .PHONY : src/vechicle.o
@@ -291,6 +318,9 @@ help:
 	@echo "... src/motor.o"
 	@echo "... src/motor.i"
 	@echo "... src/motor.s"
+	@echo "... src/uart.o"
+	@echo "... src/uart.i"
+	@echo "... src/uart.s"
 	@echo "... src/vechicle.o"
 	@echo "... src/vechicle.i"
 	@echo "... src/vechicle.s"

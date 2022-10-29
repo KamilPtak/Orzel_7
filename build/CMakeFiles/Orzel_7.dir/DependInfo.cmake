@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/kamil/Desktop/Orzel_7/src/kalman.cpp" "/home/kamil/Desktop/Orzel_7/build/CMakeFiles/Orzel_7.dir/src/kalman.cpp.o"
   "/home/kamil/Desktop/Orzel_7/src/main.cpp" "/home/kamil/Desktop/Orzel_7/build/CMakeFiles/Orzel_7.dir/src/main.cpp.o"
   "/home/kamil/Desktop/Orzel_7/src/motor.cpp" "/home/kamil/Desktop/Orzel_7/build/CMakeFiles/Orzel_7.dir/src/motor.cpp.o"
+  "/home/kamil/Desktop/Orzel_7/src/uart.cpp" "/home/kamil/Desktop/Orzel_7/build/CMakeFiles/Orzel_7.dir/src/uart.cpp.o"
   "/home/kamil/Desktop/Orzel_7/src/vechicle.cpp" "/home/kamil/Desktop/Orzel_7/build/CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

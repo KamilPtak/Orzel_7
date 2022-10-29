@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Orzel_7.dir/src/kalman.cpp.o"
   "CMakeFiles/Orzel_7.dir/src/main.cpp.o"
   "CMakeFiles/Orzel_7.dir/src/motor.cpp.o"
+  "CMakeFiles/Orzel_7.dir/src/uart.cpp.o"
   "CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o"
   "Orzel_7"
   "Orzel_7.pdb"

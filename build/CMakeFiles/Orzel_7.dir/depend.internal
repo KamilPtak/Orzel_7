@@ -18,6 +18,10 @@ CMakeFiles/Orzel_7.dir/src/main.cpp.o
 CMakeFiles/Orzel_7.dir/src/motor.cpp.o
  ../inc/motor.hpp
  /home/kamil/Desktop/Orzel_7/src/motor.cpp
+CMakeFiles/Orzel_7.dir/src/uart.cpp.o
+ ../inc/myExceptions.hpp
+ ../inc/uart.hpp
+ /home/kamil/Desktop/Orzel_7/src/uart.cpp
 CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o
  ../inc/motor.hpp
  ../inc/myExceptions.hpp

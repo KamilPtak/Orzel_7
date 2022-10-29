@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
             std::cout<<rcvData<<"\n";
         }
     }
-    catch (TCPException& e){
+    catch (Exception& e){
         std::cerr<<"Exception!!!"<<"\n"<<e.what()<<"\n";  
     }
 
