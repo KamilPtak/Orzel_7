@@ -8,14 +8,13 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     Motor* motorR1 = new Motor();
     Motor* motorR2 = new Motor();
     UART * uart = new UART("/dev/ttyS0", 9600);
+    // Kalman* kalman = new Kalman()
  }
 
  void Vechicle::resetPosition() {
     xPos = 0;
     yPos = 0;
  }
-
-
 
 void Vechicle::decodeMessageFromClient(std::string msg) {
     uint8_t pos = msg.find(" ");
@@ -142,4 +141,10 @@ void Vechicle::printEsimatedPosition() {
 Vechicle::~Vechicle() {
     moveStop();
     resetPosition();
+    delete motorL1;
+    delete motorL2;
+    delete motorR1;
+    delete motorR2;
+    delete uart;
+    delete kalman;
 }

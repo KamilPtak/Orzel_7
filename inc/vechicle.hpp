@@ -5,6 +5,7 @@
 #include "adxl345.hpp"
 #include "uart.hpp"
 #include "myExceptions.hpp"
+
 #pragma once
 
 class Vechicle {
@@ -19,7 +20,6 @@ class Vechicle {
 
     public:
         Vechicle();
-
         //TODO - okreslenie ile ma trwac skecanie kolami 
         void decodeMessageFromClient(std::string msg);
         void move(std::string direction);  
