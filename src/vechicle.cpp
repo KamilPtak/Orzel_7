@@ -34,7 +34,7 @@ void Vechicle::move(std::string direction) {
         moveStop();
     }
     else {
-        throw VechicleException("Unknown command!");
+        throw Exception("Vechicle", "Unknown command!");
     }
 }
 

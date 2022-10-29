@@ -13,28 +13,28 @@ TCPServer::TCPServer(uint port_): port(port_), opt(1), numOfClients(0) {
 void TCPServer::createSocket() {
     serverfd = socket(AF_INET, SOCK_STREAM, 0);
     if (serverfd == -1){
-        throw TCPException("Error while creating TCP socket");
+        throw Exception("TCP", "Error while creating TCP socket");
     }
     std::cerr<<"New socket created..."<<"\n";
 }
 
 void TCPServer::setSockOpt() {
     if(setsockopt(serverfd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)) == -1) {
-        throw TCPException("Jak tu sie sypie to usunac tego ifa");
+        throw Exception("TCP", "Jak tu sie sypie to usunac tego ifa");
     }
     std::cerr<<"Socket options set..."<<"\n";
 }
 
 void TCPServer::bindSocket() {
     if(bind(serverfd, (sockaddr*) &hint, sizeof(hint)) == -1) {
-        throw TCPException("Error while binding socket");
+        throw Exception("TCP", "Error while binding socket");
     }
     std::cerr<<"Socket binded..."<<"\n";
 }
 
 void TCPServer::listenForClients() {
     if(listen(serverfd, 3) == -1) {
-        throw TCPException("Error while listening for client");
+        throw Exception("TCP", "Error while listening for client");
     }
     std::cerr<<"Listening for client..."<<"\n";
 }
@@ -42,7 +42,7 @@ void TCPServer::listenForClients() {
 void TCPServer::acceptClient() {
     int newSocket = accept(serverfd, (struct sockaddr*)& hint, &addrlen);
     if(newSocket == -1) {
-        throw TCPException("Error while accepting");
+        throw Exception("TCP", "Error while accepting");
     }
     clientsList.push_back(newSocket);
     numOfClients++;
@@ -53,7 +53,7 @@ std::string TCPServer::receiveData(int client) {
     std::string reply(1024, ' ');
     int rcvData = recv(clientsList[client], &reply.front(), reply.size(), 0);
     if (rcvData == -1) {
-        throw TCPException("Error while receiving bytes");
+        throw Exception("TCP", "Error while receiving bytes");
     }
     reply.erase(std::remove_if(reply.begin(), reply.end(), ::isspace),reply.end());
     return reply;

@@ -34,17 +34,17 @@ UART::UART(std::string port_, int baud_): port(port_), baud(baud_) {
 
 void UART::openSerialPort(){
     if(serialPort = open(port.data(), O_RDWR) < 0) {
-        throw UARTException("Unable to open serial port");
+        throw Exception("UART", "Unable to open serial port");
     }
     std::cerr<<"Serial connection opened at port: "<<port<<" with baudrate: "<<baud<<"\n";
 
     if(tcsetattr(serialPort, TCSANOW, &tty)) {
-        throw UARTException("Unable to save settings");
+        throw Exception("UART" ,"Unable to save settings");
     }
 }
 
 void UART::pushData(std::string data) {
     if(write(serialPort, data.data(), data.length()) < 0) {
-        throw UARTException("Error while sending data!");
+        throw Exception("UART", "Error while sending data!");
     }
 }
