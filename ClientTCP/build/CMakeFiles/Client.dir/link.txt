@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/Client.dir/src/main.cpp.o CMakeFiles/Client.dir/src/TCPconnection.cpp.o  -o Client 
