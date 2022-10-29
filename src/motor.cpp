@@ -42,3 +42,5 @@ std::string Motor::packDataToSend() {
     steeringData = std::to_string(motorID ) + ":" + std::to_string(speed) + ":" + boolToString(dir1) + ":" + boolToString(dir2);
     return steeringData;
 }
+
+

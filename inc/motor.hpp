@@ -23,6 +23,5 @@ class Motor {
 
         inline const std::string boolToString(bool b);
         std::string packDataToSend();
-
 };
 
