@@ -4,6 +4,8 @@
 #include "motor.hpp"
 #include "adxl345.hpp"
 #include "uart.hpp"
+#include "kalman.hpp"
+#include "gyro.hpp"
 #include "myExceptions.hpp"
 
 #pragma once
@@ -15,6 +17,9 @@ class Vechicle {
         Motor* motorL1;
         Motor* motorL2;
         UART* uart;
+        Kalman* kalman;
+        Gyro* gyro;
+
         int xPos, yPos;
         int estimatedXPos, estimatedYPos;
 

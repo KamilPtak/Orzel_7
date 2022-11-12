@@ -8,7 +8,9 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     Motor* motorR1 = new Motor();
     Motor* motorR2 = new Motor();
     UART * uart = new UART("/dev/ttyS0", 9600);
-    // Kalman* kalman = new Kalman()
+    // Kalman* kalman = new Kalman(); //do odkomentowania po implementacji klas
+    // ADXL* adxl = new ADXL();
+    // Gyro* gyro = new Gyro();
  }
 
  void Vechicle::resetPosition() {
@@ -146,5 +148,7 @@ Vechicle::~Vechicle() {
     delete motorR1;
     delete motorR2;
     delete uart;
-    delete kalman;
+    // delete kalman; //Do odkodowania po implementacij klas
+    // delete adxl;
+    // delete gyro;
 }
