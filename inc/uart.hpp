@@ -21,6 +21,8 @@ class UART{
         int baud;
     public:
         UART(std::string port_, int baud_);
+        UART();
+
         void openSerialPort();
         void closeSerialPort();
         void pushData(std::string data);
