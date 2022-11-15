@@ -1,3 +1,5 @@
+// RT Patch - lepsze sterowanie jadrem linuksa
+
 #include <iostream>
 #include <thread>
 #include <utility>
@@ -9,14 +11,9 @@
 
 #define SPEAKER 0
 #define LISTENER 1
-uint port = 80000;
+uint port = 80001;
 
-void runRobotRun(std::pair<std::string, Vechicle*> inputPair) {
-    std::string msg = inputPair.first;
-    Vechicle* vechicle = std::move(inputPair.second);
-    std::cout<<"DUUUUUUUUUUUUUUPA"<<std::endl;
-}
-
+void runRobotRun(std::pair<std::string, Vechicle*> inputPair);
 
 
 int main(int argc, char *argv[]) {
@@ -37,20 +34,24 @@ int main(int argc, char *argv[]) {
         std::queue<std::string> messageQueue;
         std::string rcvData = "";
         tcp->createConnection();
-        
+
+
         while(rcvData != "close") {
-            rcvData = tcp->receiveData(SPEAKER);
+            rcvData = tcp->receiveData(SPEAKER); 
             std::cout<<"Received message: "<<rcvData<<"\n";
-            messageQueue.push(rcvData);
-                if(messageQueue.size() != 0 ) {
-                    auto msg = messageQueue.front();
-                    messageQueue.pop();
-                    std::thread childThread(runRobotRun, std::make_pair(msg, std::ref(vechicle)));
-                    childThread.detach();
-                }
-            // vechicle->decodeMessageFromClient(rcvData);
-            
         }
+        
+        // while(rcvData != "close") {
+        //     rcvData = tcp->receiveData(SPEAKER);
+        //     std::cout<<"Received message: "<<rcvData<<"\n";
+        //     messageQueue.push(rcvData);
+        //         if(messageQueue.size() != 0 ) {
+        //             auto msg = messageQueue.front();
+        //             messageQueue.pop();
+        //             std::thread childThread(runRobotRun, std::make_pair(msg, std::ref(vechicle)));
+        //             childThread.detach();
+        //         }
+        // }
     }
     catch (Exception& e){
         std::cerr<<"Exception!!!"<<"\n"<<e.what()<<"\n";  
@@ -65,3 +66,15 @@ int main(int argc, char *argv[]) {
 }
 
 
+void runRobotRun(std::pair<std::string, Vechicle*> inputPair) {
+    std::string msg = inputPair.first;
+    Vechicle* vechicle = std::move(inputPair.second);
+    std::cout<<"I am child thread!!!"<<std::endl;
+
+    try{
+        vechicle -> decodeMessageFromClient(msg);
+    }
+    catch (Exception& e){
+        std::cerr<<"Exception!!!"<<"\n"<<e.what()<<"\n";  
+    }
+}

@@ -8,15 +8,12 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     Motor* motorR1 = new Motor();
     Motor* motorR2 = new Motor();
     UART * uart = new UART("/dev/ttyS0", 9600);
+    uart->openSerialPort();
     // Kalman* kalman = new Kalman(); //do odkomentowania po implementacji klas
     // ADXL* adxl = new ADXL();
     // Gyro* gyro = new Gyro();
  }
 
- void Vechicle::resetPosition() {
-    xPos = 0;
-    yPos = 0;
- }
 
 void Vechicle::decodeMessageFromClient(std::string msg) {
     uint8_t pos = msg.find(" ");
@@ -34,32 +31,38 @@ void Vechicle::decodeMessageFromClient(std::string msg) {
                 dir2.push_back(msg[i]);
             }
         }
-
         move(std::stoi(dir1), std::stoi(dir2));
     }
 }
-
+// _________TODO_________
+// KONIECZNIE  ZAMOISTNEZATRZYMANIE ROBOTA 
 void Vechicle::move(std::string direction) {
     if(direction == "forward") {
         moveForward();
+        // kalmanFilter -> getEstimatedPosition()
     }
     else if(direction == "back") {
         moveBack();
+        // kalmanFilter -> getEstimatedPosition()
     }
     else if(direction == "left") {
         moveLeft();
+        // kalmanFilter -> getEstimatedPosition()
     }
     else if (direction == "right") {
         moveRight();
+        // kalmanFilter -> getEstimatedPosition()
     }
     else if(direction == "stop") {
         moveStop();
+        // kalmanFilter -> getEstimatedPosition()
     }
     else {
         moveStop();
         throw Exception("Vechicle", "Unknown command!");
     }
 }
+
 
 void Vechicle::move(int xTarget, int yTarget) {
     if(xTarget < xPos) {
@@ -93,11 +96,6 @@ void Vechicle::move(int xTarget, int yTarget) {
     }
 }
 
-void Vechicle::sendMoveData(){
-    std::string moveBitsToSend;
-    moveBitsToSend = motorL1->packDataToSend() + motorL2->packDataToSend() + motorR1->packDataToSend() + motorR2->packDataToSend();
-    uart->pushData(moveBitsToSend);
-}
 
 void Vechicle::moveForward() {
     motorL1->turnForward();
@@ -135,10 +133,26 @@ void Vechicle::moveStop() {
     sendMoveData();
 }
 
+
+void Vechicle::sendMoveData(){
+    std::string moveBitsToSend;
+    moveBitsToSend = motorL1->packDataToSend() + motorL2->packDataToSend() + motorR1->packDataToSend() + motorR2->packDataToSend();
+    uart->pushData(moveBitsToSend);
+}
+
+
 void Vechicle::printEsimatedPosition() {
     std::cerr<<"Estimated X position"<<estimatedXPos<<"\n";
     std::cerr<<"Estimated Y position"<<estimatedYPos<<"\n";
 }
+
+
+
+ void Vechicle::resetPosition() {
+    xPos = 0;
+    yPos = 0;
+ }
+
 
 Vechicle::~Vechicle() {
     moveStop();
