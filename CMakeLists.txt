@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.13)
 project(Orzel_7 VERSION 0.1)
 set(CMAKE_CXX_STANDARD 14)
+find_package(Threads REQUIRED)
+
 
 enable_testing()
 
@@ -14,6 +16,8 @@ add_executable("${PROJECT_NAME}"    src/main.cpp
                                     src/TCPconnection.cpp
                                     src/uart.cpp
                                     src/adxl345.cpp
+                                    src/gyro.cpp
+                                    
                                     
                                     inc/kalman.hpp
                                     inc/motor.hpp
@@ -23,7 +27,9 @@ add_executable("${PROJECT_NAME}"    src/main.cpp
                                     inc/TCPconnection.hpp
                                     inc/uart.hpp
                                     inc/adxl345.hpp
+                                    inc/gyro.hpp
                                     )
 
+target_link_libraries("${PROJECT_NAME}"  pthread )
 target_include_directories("${PROJECT_NAME}" PRIVATE scr inc)
 

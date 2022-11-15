@@ -188,6 +188,33 @@ src/adxl345.cpp.s:
 	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/adxl345.cpp.s
 .PHONY : src/adxl345.cpp.s
 
+src/gyro.o: src/gyro.cpp.o
+
+.PHONY : src/gyro.o
+
+# target to build an object file
+src/gyro.cpp.o:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/gyro.cpp.o
+.PHONY : src/gyro.cpp.o
+
+src/gyro.i: src/gyro.cpp.i
+
+.PHONY : src/gyro.i
+
+# target to preprocess a source file
+src/gyro.cpp.i:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/gyro.cpp.i
+.PHONY : src/gyro.cpp.i
+
+src/gyro.s: src/gyro.cpp.s
+
+.PHONY : src/gyro.s
+
+# target to generate assembly for a file
+src/gyro.cpp.s:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/gyro.cpp.s
+.PHONY : src/gyro.cpp.s
+
 src/kalman.o: src/kalman.cpp.o
 
 .PHONY : src/kalman.o
@@ -339,6 +366,9 @@ help:
 	@echo "... src/adxl345.o"
 	@echo "... src/adxl345.i"
 	@echo "... src/adxl345.s"
+	@echo "... src/gyro.o"
+	@echo "... src/gyro.i"
+	@echo "... src/gyro.s"
 	@echo "... src/kalman.o"
 	@echo "... src/kalman.i"
 	@echo "... src/kalman.s"
