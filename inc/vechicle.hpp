@@ -4,7 +4,7 @@
 #include "motor.hpp"
 #include "adxl345.hpp"
 #include "uart.hpp"
-#include "position.hpp"
+#include "PID.hpp"
 #include "gyro.hpp"
 #include "myExceptions.hpp"
 #include "libSensor.hpp"
@@ -40,7 +40,7 @@ class Vechicle {
 
         void printEsimatedPosition();
         void resetPosition();
-        void getPosition(int deltaT, int accelX, int accelY, float angle);
+        void getPosition(double deltaT, int accelX, int accelY, float angle);
         void sendMoveData();
 
         // int getXPosition(float deltaT, float accelX, float accelY, int );
