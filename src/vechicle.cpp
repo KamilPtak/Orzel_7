@@ -1,4 +1,5 @@
 #include "vechicle.hpp"
+#include <cmath>
 
 Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     // Motor* motorL1 = new Motor(): enable(), dir1(), dir2() {}
@@ -8,6 +9,7 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     Motor* motorR1 = new Motor();
     Motor* motorR2 = new Motor();
     UART * uart = new UART("/dev/ttyS0", 9600);
+    Sensor * sensor = new Sensor();
     // Kalman* kalman = new Kalman(); //do odkomentowania po implementacji klas
     // ADXL* adxl = new ADXL();
     // Gyro* gyro = new Gyro();
@@ -138,6 +140,24 @@ void Vechicle::moveStop() {
 void Vechicle::printEsimatedPosition() {
     std::cerr<<"Estimated X position"<<estimatedXPos<<"\n";
     std::cerr<<"Estimated Y position"<<estimatedYPos<<"\n";
+}
+
+void Vechicle::getPosition(int deltaT, int accelX, int accelY, float angle)//sprawdzic jednostki !!!!!
+{
+    float tempX = accelX * cos(angle) + accelY * sin(angle);
+    float tempY = accelX * cos(angle) - accelY * sin(angle);
+    for(int i = 0; i<2; i++)
+    {
+        tempX = integral(tempX, deltaT);
+        tempY = integral(tempY, deltaT);
+    }
+    xPos = tempX;
+    yPos = tempY;
+}
+
+float integral(float integratedValue, float timeStep)
+{
+    return integratedValue*timeStep;
 }
 
 Vechicle::~Vechicle() {

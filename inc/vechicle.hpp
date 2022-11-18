@@ -4,9 +4,10 @@
 #include "motor.hpp"
 #include "adxl345.hpp"
 #include "uart.hpp"
-#include "kalman.hpp"
+#include "position.hpp"
 #include "gyro.hpp"
 #include "myExceptions.hpp"
+#include "libSensor.hpp"
 
 #pragma once
 
@@ -17,8 +18,9 @@ class Vechicle {
         Motor* motorL1;
         Motor* motorL2;
         UART* uart;
-        Kalman* kalman;
-        Gyro* gyro;
+        Sensor* sensor;
+        // Kalman* kalman;
+        // Gyro* gyro;
 
         int xPos, yPos;
         int estimatedXPos, estimatedYPos;
@@ -38,8 +40,11 @@ class Vechicle {
 
         void printEsimatedPosition();
         void resetPosition();
-        int getPosition();
+        void getPosition(int deltaT, int accelX, int accelY, float angle);
         void sendMoveData();
+
+        // int getXPosition(float deltaT, float accelX, float accelY, int );
+        // int getYPosition(float deltaT, float accelX, float accelY);
 
         ~Vechicle();
 };
