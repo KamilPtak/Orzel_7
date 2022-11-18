@@ -157,6 +157,7 @@ void Vechicle::move(int xTarget, int yTarget) {
         // aktualizujemy pozycje robota
         }
     }
+    moveStop();
 }
 
 void Vechicle::sendMoveData(){
