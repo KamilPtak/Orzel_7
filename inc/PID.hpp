@@ -2,9 +2,9 @@
 
 class PID {
 	private:
-		const int k = 1;
-		const int Ti = 1;
-		const int Td = 1;
+		const int k;
+		const int Ti;
+		const int Td;
 		double integral, previousError;
 	public:
 		PID();

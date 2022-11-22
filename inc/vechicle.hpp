@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
+#include <cmath>
+#include <chrono>
 
 #include "motor.hpp"
-#include "adxl345.hpp"
 #include "uart.hpp"
 #include "PID.hpp"
-#include "gyro.hpp"
 #include "myExceptions.hpp"
 #include "libSensor.hpp"
 
@@ -19,6 +19,7 @@ class Vechicle {
         Motor* motorL2;
         UART* uart;
         Sensor* sensor;
+        PID* pid;
         // Kalman* kalman;
         // Gyro* gyro;
 
@@ -42,6 +43,8 @@ class Vechicle {
         void resetPosition();
         void getPosition(double deltaT, int accelX, int accelY, float angle);
         void sendMoveData();
+        
+        void moveCalculations(std::chrono::high_resolution_clock::time_point* start, std::chrono::high_resolution_clock::time_point* stop, std::chrono::duration<double>* duration, bool* isFirstIteration);
 
         // int getXPosition(float deltaT, float accelX, float accelY, int );
         // int getYPosition(float deltaT, float accelX, float accelY);

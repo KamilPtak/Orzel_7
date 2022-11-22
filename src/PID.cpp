@@ -1,6 +1,6 @@
 #include "PID.hpp"
 
-PID::PID(): integral(0), previousError(0){};
+PID::PID(): k(1), Ti(1), Td(1), integral(0), previousError(0){};
 
 void PID::PIDcalculateOutput(double error, double deltaT)//jak zaimpelemntowac liczenie sterowania na poszczegolne kola???
 {

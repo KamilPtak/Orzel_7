@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kamil/Desktop/Orzel_7
+CMAKE_SOURCE_DIR = /home/student/Desktop/studia/zzum/Orzel_7
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kamil/Desktop/Orzel_7/build
+CMAKE_BINARY_DIR = /home/student/Desktop/studia/zzum/Orzel_7/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -91,9 +91,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kamil/Desktop/Orzel_7/build/CMakeFiles /home/kamil/Desktop/Orzel_7/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/Desktop/studia/zzum/Orzel_7/build/CMakeFiles /home/student/Desktop/studia/zzum/Orzel_7/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kamil/Desktop/Orzel_7/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/Desktop/studia/zzum/Orzel_7/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -134,6 +134,33 @@ Orzel_7/fast:
 	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/build
 .PHONY : Orzel_7/fast
 
+src/PID.o: src/PID.cpp.o
+
+.PHONY : src/PID.o
+
+# target to build an object file
+src/PID.cpp.o:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/PID.cpp.o
+.PHONY : src/PID.cpp.o
+
+src/PID.i: src/PID.cpp.i
+
+.PHONY : src/PID.i
+
+# target to preprocess a source file
+src/PID.cpp.i:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/PID.cpp.i
+.PHONY : src/PID.cpp.i
+
+src/PID.s: src/PID.cpp.s
+
+.PHONY : src/PID.s
+
+# target to generate assembly for a file
+src/PID.cpp.s:
+	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/PID.cpp.s
+.PHONY : src/PID.cpp.s
+
 src/TCPconnection.o: src/TCPconnection.cpp.o
 
 .PHONY : src/TCPconnection.o
@@ -160,87 +187,6 @@ src/TCPconnection.s: src/TCPconnection.cpp.s
 src/TCPconnection.cpp.s:
 	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.s
 .PHONY : src/TCPconnection.cpp.s
-
-src/adxl345.o: src/adxl345.cpp.o
-
-.PHONY : src/adxl345.o
-
-# target to build an object file
-src/adxl345.cpp.o:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/adxl345.cpp.o
-.PHONY : src/adxl345.cpp.o
-
-src/adxl345.i: src/adxl345.cpp.i
-
-.PHONY : src/adxl345.i
-
-# target to preprocess a source file
-src/adxl345.cpp.i:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/adxl345.cpp.i
-.PHONY : src/adxl345.cpp.i
-
-src/adxl345.s: src/adxl345.cpp.s
-
-.PHONY : src/adxl345.s
-
-# target to generate assembly for a file
-src/adxl345.cpp.s:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/adxl345.cpp.s
-.PHONY : src/adxl345.cpp.s
-
-src/gyro.o: src/gyro.cpp.o
-
-.PHONY : src/gyro.o
-
-# target to build an object file
-src/gyro.cpp.o:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/gyro.cpp.o
-.PHONY : src/gyro.cpp.o
-
-src/gyro.i: src/gyro.cpp.i
-
-.PHONY : src/gyro.i
-
-# target to preprocess a source file
-src/gyro.cpp.i:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/gyro.cpp.i
-.PHONY : src/gyro.cpp.i
-
-src/gyro.s: src/gyro.cpp.s
-
-.PHONY : src/gyro.s
-
-# target to generate assembly for a file
-src/gyro.cpp.s:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/gyro.cpp.s
-.PHONY : src/gyro.cpp.s
-
-src/kalman.o: src/kalman.cpp.o
-
-.PHONY : src/kalman.o
-
-# target to build an object file
-src/kalman.cpp.o:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/kalman.cpp.o
-.PHONY : src/kalman.cpp.o
-
-src/kalman.i: src/kalman.cpp.i
-
-.PHONY : src/kalman.i
-
-# target to preprocess a source file
-src/kalman.cpp.i:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/kalman.cpp.i
-.PHONY : src/kalman.cpp.i
-
-src/kalman.s: src/kalman.cpp.s
-
-.PHONY : src/kalman.s
-
-# target to generate assembly for a file
-src/kalman.cpp.s:
-	$(MAKE) -f CMakeFiles/Orzel_7.dir/build.make CMakeFiles/Orzel_7.dir/src/kalman.cpp.s
-.PHONY : src/kalman.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -360,18 +306,12 @@ help:
 	@echo "... test"
 	@echo "... rebuild_cache"
 	@echo "... Orzel_7"
+	@echo "... src/PID.o"
+	@echo "... src/PID.i"
+	@echo "... src/PID.s"
 	@echo "... src/TCPconnection.o"
 	@echo "... src/TCPconnection.i"
 	@echo "... src/TCPconnection.s"
-	@echo "... src/adxl345.o"
-	@echo "... src/adxl345.i"
-	@echo "... src/adxl345.s"
-	@echo "... src/gyro.o"
-	@echo "... src/gyro.i"
-	@echo "... src/gyro.s"
-	@echo "... src/kalman.o"
-	@echo "... src/kalman.i"
-	@echo "... src/kalman.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

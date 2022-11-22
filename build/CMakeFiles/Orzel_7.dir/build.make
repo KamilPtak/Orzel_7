@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kamil/Desktop/Orzel_7
+CMAKE_SOURCE_DIR = /home/student/Desktop/studia/zzum/Orzel_7
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kamil/Desktop/Orzel_7/build
+CMAKE_BINARY_DIR = /home/student/Desktop/studia/zzum/Orzel_7/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Orzel_7.dir/depend.make
@@ -59,133 +59,103 @@ include CMakeFiles/Orzel_7.dir/flags.make
 
 CMakeFiles/Orzel_7.dir/src/main.cpp.o: CMakeFiles/Orzel_7.dir/flags.make
 CMakeFiles/Orzel_7.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/Desktop/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Orzel_7.dir/src/main.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/main.cpp.o -c /home/kamil/Desktop/Orzel_7/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/student/Desktop/studia/zzum/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Orzel_7.dir/src/main.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/main.cpp.o -c /home/student/Desktop/studia/zzum/Orzel_7/src/main.cpp
 
 CMakeFiles/Orzel_7.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Orzel_7.dir/src/main.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/Desktop/Orzel_7/src/main.cpp > CMakeFiles/Orzel_7.dir/src/main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/student/Desktop/studia/zzum/Orzel_7/src/main.cpp > CMakeFiles/Orzel_7.dir/src/main.cpp.i
 
 CMakeFiles/Orzel_7.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Orzel_7.dir/src/main.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/Desktop/Orzel_7/src/main.cpp -o CMakeFiles/Orzel_7.dir/src/main.cpp.s
-
-CMakeFiles/Orzel_7.dir/src/kalman.cpp.o: CMakeFiles/Orzel_7.dir/flags.make
-CMakeFiles/Orzel_7.dir/src/kalman.cpp.o: ../src/kalman.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/Desktop/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Orzel_7.dir/src/kalman.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/kalman.cpp.o -c /home/kamil/Desktop/Orzel_7/src/kalman.cpp
-
-CMakeFiles/Orzel_7.dir/src/kalman.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Orzel_7.dir/src/kalman.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/Desktop/Orzel_7/src/kalman.cpp > CMakeFiles/Orzel_7.dir/src/kalman.cpp.i
-
-CMakeFiles/Orzel_7.dir/src/kalman.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Orzel_7.dir/src/kalman.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/Desktop/Orzel_7/src/kalman.cpp -o CMakeFiles/Orzel_7.dir/src/kalman.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/student/Desktop/studia/zzum/Orzel_7/src/main.cpp -o CMakeFiles/Orzel_7.dir/src/main.cpp.s
 
 CMakeFiles/Orzel_7.dir/src/motor.cpp.o: CMakeFiles/Orzel_7.dir/flags.make
 CMakeFiles/Orzel_7.dir/src/motor.cpp.o: ../src/motor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/Desktop/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Orzel_7.dir/src/motor.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/motor.cpp.o -c /home/kamil/Desktop/Orzel_7/src/motor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/student/Desktop/studia/zzum/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Orzel_7.dir/src/motor.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/motor.cpp.o -c /home/student/Desktop/studia/zzum/Orzel_7/src/motor.cpp
 
 CMakeFiles/Orzel_7.dir/src/motor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Orzel_7.dir/src/motor.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/Desktop/Orzel_7/src/motor.cpp > CMakeFiles/Orzel_7.dir/src/motor.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/student/Desktop/studia/zzum/Orzel_7/src/motor.cpp > CMakeFiles/Orzel_7.dir/src/motor.cpp.i
 
 CMakeFiles/Orzel_7.dir/src/motor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Orzel_7.dir/src/motor.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/Desktop/Orzel_7/src/motor.cpp -o CMakeFiles/Orzel_7.dir/src/motor.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/student/Desktop/studia/zzum/Orzel_7/src/motor.cpp -o CMakeFiles/Orzel_7.dir/src/motor.cpp.s
 
 CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o: CMakeFiles/Orzel_7.dir/flags.make
 CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o: ../src/vechicle.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/Desktop/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o -c /home/kamil/Desktop/Orzel_7/src/vechicle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/student/Desktop/studia/zzum/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o -c /home/student/Desktop/studia/zzum/Orzel_7/src/vechicle.cpp
 
 CMakeFiles/Orzel_7.dir/src/vechicle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Orzel_7.dir/src/vechicle.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/Desktop/Orzel_7/src/vechicle.cpp > CMakeFiles/Orzel_7.dir/src/vechicle.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/student/Desktop/studia/zzum/Orzel_7/src/vechicle.cpp > CMakeFiles/Orzel_7.dir/src/vechicle.cpp.i
 
 CMakeFiles/Orzel_7.dir/src/vechicle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Orzel_7.dir/src/vechicle.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/Desktop/Orzel_7/src/vechicle.cpp -o CMakeFiles/Orzel_7.dir/src/vechicle.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/student/Desktop/studia/zzum/Orzel_7/src/vechicle.cpp -o CMakeFiles/Orzel_7.dir/src/vechicle.cpp.s
 
 CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o: CMakeFiles/Orzel_7.dir/flags.make
 CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o: ../src/TCPconnection.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/Desktop/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o -c /home/kamil/Desktop/Orzel_7/src/TCPconnection.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/student/Desktop/studia/zzum/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o -c /home/student/Desktop/studia/zzum/Orzel_7/src/TCPconnection.cpp
 
 CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/Desktop/Orzel_7/src/TCPconnection.cpp > CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/student/Desktop/studia/zzum/Orzel_7/src/TCPconnection.cpp > CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.i
 
 CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/Desktop/Orzel_7/src/TCPconnection.cpp -o CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/student/Desktop/studia/zzum/Orzel_7/src/TCPconnection.cpp -o CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.s
 
 CMakeFiles/Orzel_7.dir/src/uart.cpp.o: CMakeFiles/Orzel_7.dir/flags.make
 CMakeFiles/Orzel_7.dir/src/uart.cpp.o: ../src/uart.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/Desktop/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Orzel_7.dir/src/uart.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/uart.cpp.o -c /home/kamil/Desktop/Orzel_7/src/uart.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/student/Desktop/studia/zzum/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Orzel_7.dir/src/uart.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/uart.cpp.o -c /home/student/Desktop/studia/zzum/Orzel_7/src/uart.cpp
 
 CMakeFiles/Orzel_7.dir/src/uart.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Orzel_7.dir/src/uart.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/Desktop/Orzel_7/src/uart.cpp > CMakeFiles/Orzel_7.dir/src/uart.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/student/Desktop/studia/zzum/Orzel_7/src/uart.cpp > CMakeFiles/Orzel_7.dir/src/uart.cpp.i
 
 CMakeFiles/Orzel_7.dir/src/uart.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Orzel_7.dir/src/uart.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/Desktop/Orzel_7/src/uart.cpp -o CMakeFiles/Orzel_7.dir/src/uart.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/student/Desktop/studia/zzum/Orzel_7/src/uart.cpp -o CMakeFiles/Orzel_7.dir/src/uart.cpp.s
 
-CMakeFiles/Orzel_7.dir/src/adxl345.cpp.o: CMakeFiles/Orzel_7.dir/flags.make
-CMakeFiles/Orzel_7.dir/src/adxl345.cpp.o: ../src/adxl345.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/Desktop/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Orzel_7.dir/src/adxl345.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/adxl345.cpp.o -c /home/kamil/Desktop/Orzel_7/src/adxl345.cpp
+CMakeFiles/Orzel_7.dir/src/PID.cpp.o: CMakeFiles/Orzel_7.dir/flags.make
+CMakeFiles/Orzel_7.dir/src/PID.cpp.o: ../src/PID.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/student/Desktop/studia/zzum/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Orzel_7.dir/src/PID.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/PID.cpp.o -c /home/student/Desktop/studia/zzum/Orzel_7/src/PID.cpp
 
-CMakeFiles/Orzel_7.dir/src/adxl345.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Orzel_7.dir/src/adxl345.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/Desktop/Orzel_7/src/adxl345.cpp > CMakeFiles/Orzel_7.dir/src/adxl345.cpp.i
+CMakeFiles/Orzel_7.dir/src/PID.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Orzel_7.dir/src/PID.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/student/Desktop/studia/zzum/Orzel_7/src/PID.cpp > CMakeFiles/Orzel_7.dir/src/PID.cpp.i
 
-CMakeFiles/Orzel_7.dir/src/adxl345.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Orzel_7.dir/src/adxl345.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/Desktop/Orzel_7/src/adxl345.cpp -o CMakeFiles/Orzel_7.dir/src/adxl345.cpp.s
-
-CMakeFiles/Orzel_7.dir/src/gyro.cpp.o: CMakeFiles/Orzel_7.dir/flags.make
-CMakeFiles/Orzel_7.dir/src/gyro.cpp.o: ../src/gyro.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/Desktop/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Orzel_7.dir/src/gyro.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Orzel_7.dir/src/gyro.cpp.o -c /home/kamil/Desktop/Orzel_7/src/gyro.cpp
-
-CMakeFiles/Orzel_7.dir/src/gyro.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Orzel_7.dir/src/gyro.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/Desktop/Orzel_7/src/gyro.cpp > CMakeFiles/Orzel_7.dir/src/gyro.cpp.i
-
-CMakeFiles/Orzel_7.dir/src/gyro.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Orzel_7.dir/src/gyro.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/Desktop/Orzel_7/src/gyro.cpp -o CMakeFiles/Orzel_7.dir/src/gyro.cpp.s
+CMakeFiles/Orzel_7.dir/src/PID.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Orzel_7.dir/src/PID.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/student/Desktop/studia/zzum/Orzel_7/src/PID.cpp -o CMakeFiles/Orzel_7.dir/src/PID.cpp.s
 
 # Object files for target Orzel_7
 Orzel_7_OBJECTS = \
 "CMakeFiles/Orzel_7.dir/src/main.cpp.o" \
-"CMakeFiles/Orzel_7.dir/src/kalman.cpp.o" \
 "CMakeFiles/Orzel_7.dir/src/motor.cpp.o" \
 "CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o" \
 "CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o" \
 "CMakeFiles/Orzel_7.dir/src/uart.cpp.o" \
-"CMakeFiles/Orzel_7.dir/src/adxl345.cpp.o" \
-"CMakeFiles/Orzel_7.dir/src/gyro.cpp.o"
+"CMakeFiles/Orzel_7.dir/src/PID.cpp.o"
 
 # External object files for target Orzel_7
 Orzel_7_EXTERNAL_OBJECTS =
 
 Orzel_7: CMakeFiles/Orzel_7.dir/src/main.cpp.o
-Orzel_7: CMakeFiles/Orzel_7.dir/src/kalman.cpp.o
 Orzel_7: CMakeFiles/Orzel_7.dir/src/motor.cpp.o
 Orzel_7: CMakeFiles/Orzel_7.dir/src/vechicle.cpp.o
 Orzel_7: CMakeFiles/Orzel_7.dir/src/TCPconnection.cpp.o
 Orzel_7: CMakeFiles/Orzel_7.dir/src/uart.cpp.o
-Orzel_7: CMakeFiles/Orzel_7.dir/src/adxl345.cpp.o
-Orzel_7: CMakeFiles/Orzel_7.dir/src/gyro.cpp.o
+Orzel_7: CMakeFiles/Orzel_7.dir/src/PID.cpp.o
 Orzel_7: CMakeFiles/Orzel_7.dir/build.make
 Orzel_7: CMakeFiles/Orzel_7.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kamil/Desktop/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable Orzel_7"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/student/Desktop/studia/zzum/Orzel_7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Orzel_7"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Orzel_7.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -198,6 +168,6 @@ CMakeFiles/Orzel_7.dir/clean:
 .PHONY : CMakeFiles/Orzel_7.dir/clean
 
 CMakeFiles/Orzel_7.dir/depend:
-	cd /home/kamil/Desktop/Orzel_7/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kamil/Desktop/Orzel_7 /home/kamil/Desktop/Orzel_7 /home/kamil/Desktop/Orzel_7/build /home/kamil/Desktop/Orzel_7/build /home/kamil/Desktop/Orzel_7/build/CMakeFiles/Orzel_7.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/student/Desktop/studia/zzum/Orzel_7/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/student/Desktop/studia/zzum/Orzel_7 /home/student/Desktop/studia/zzum/Orzel_7 /home/student/Desktop/studia/zzum/Orzel_7/build /home/student/Desktop/studia/zzum/Orzel_7/build /home/student/Desktop/studia/zzum/Orzel_7/build/CMakeFiles/Orzel_7.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Orzel_7.dir/depend
 

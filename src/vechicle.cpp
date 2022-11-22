@@ -1,7 +1,6 @@
 #include "vechicle.hpp"
-#include "PID.hpp"
-#include <cmath>
-#include <chrono>
+
+float integral(float integratedValue, float timeStep);
 
 Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     // Motor* motorL1 = new Motor(): enable(), dir1(), dir2() {}
@@ -12,7 +11,7 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     Motor* motorR2 = new Motor();
     UART * uart = new UART("/dev/ttyS0", 9600);
     Sensor * sensor = new Sensor();
-    PID * pid = new PID();
+    PID* pid = new PID();
     // Kalman* kalman = new Kalman(); //do odkomentowania po implementacji klas
     // ADXL* adxl = new ADXL();
     // Gyro* gyro = new Gyro();
@@ -73,21 +72,8 @@ void Vechicle::move(int xTarget, int yTarget) {
     if(xTarget < xPos) {
         moveForward();
         while(xTarget < xPos) {
-            if(isFirtIteration)
-            {
-                isFirtIteration = false;
-                pid->reset();
-                //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
-                start = std::chrono::high_resolution_clock::now();
-            }
-            else
-            {
-                stop = std::chrono::high_resolution_clock::now();
-                duration = stop - start;
-                getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
-                //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                start = std::chrono::high_resolution_clock::now();
-            }
+            moveCalculations(&start, &stop, &duration, &isFirtIteration);
+            
         // kalmanFilter -> getEstimatedPosition()
         // aktualizujemy pozycje robota
         }
@@ -95,64 +81,21 @@ void Vechicle::move(int xTarget, int yTarget) {
     else {
         moveBack();
         while(xTarget > xPos) {
-            if(isFirtIteration)
-                {
-                    isFirtIteration = false;
-                    pid->reset();
-                    //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
-                    start = std::chrono::high_resolution_clock::now();
-                }
-                else
-                {
-                    stop = std::chrono::high_resolution_clock::now();
-                    duration = stop - start;
-                    getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
-                    //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                    start = std::chrono::high_resolution_clock::now();
-                }
-            }
+            moveCalculations(&start, &stop, &duration, &isFirtIteration);
+        }
     }
-
     if(yTarget < yPos) {
         moveRight();
         while(yTarget < yPos) {
-            if(isFirtIteration)
-            {
-                isFirtIteration = false;
-                pid->reset();
-                //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
-                start = std::chrono::high_resolution_clock::now();
-            }
-            else
-            {
-                stop = std::chrono::high_resolution_clock::now();
-                duration = stop - start;
-                getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
-                //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                start = std::chrono::high_resolution_clock::now();
-            }
+            moveCalculations(&start, &stop, &duration, &isFirtIteration);
         // kalmanFilter -> getEstimatedPosition()
         // aktualizujemy pozycje robota
-    }
+        }
     }
     else {
         moveLeft();
         while(yTarget > yPos) {
-            if(isFirtIteration)
-            {
-                isFirtIteration = false;
-                pid->reset();
-                //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
-                start = std::chrono::high_resolution_clock::now();
-            }
-            else
-            {
-                stop = std::chrono::high_resolution_clock::now();
-                duration = stop - start;
-                getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
-                //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                start = std::chrono::high_resolution_clock::now();
-            }
+            moveCalculations(&start, &stop, &duration, &isFirtIteration);
         // kalmanFilter -> getEstimatedPosition()
         // aktualizujemy pozycje robota
         }
@@ -227,6 +170,24 @@ void Vechicle::getPosition(double deltaT, int accelX, int accelY, float angle)//
 float integral(float integratedValue, float timeStep)
 {
     return integratedValue*timeStep;
+}
+void Vechicle::moveCalculations(std::chrono::high_resolution_clock::time_point* start, std::chrono::high_resolution_clock::time_point* stop, std::chrono::duration<double>* duration, bool* isFirstIteration)
+{
+    if(*isFirstIteration)
+        {
+            *isFirstIteration = false;
+            pid->reset();
+            //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
+            *start = std::chrono::high_resolution_clock::now();
+        }
+        else
+        {
+            *stop = std::chrono::high_resolution_clock::now();
+            *duration = *stop - *start;
+            getPosition((*duration).count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+            //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
+            *start = std::chrono::high_resolution_clock::now();
+        }
 }
 
 Vechicle::~Vechicle() {
