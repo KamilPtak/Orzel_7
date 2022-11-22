@@ -2,6 +2,11 @@
 #define DEF_SENSOR
 
 #include <stdint.h>
+#include <stdint.h>
+#include <wiringPi.h>
+#include <wiringPiI2C.h>
+#include <stdio.h>
+#include <cmath>
 
 class Sensor
 {

@@ -1,5 +1,7 @@
 #include <iostream>
 
+#pragma once
+
 class PID {
 	private:
 		const int k = 1;

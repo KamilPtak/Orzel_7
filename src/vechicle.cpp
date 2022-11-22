@@ -1,7 +1,4 @@
 #include "vechicle.hpp"
-#include "PID.hpp"
-#include <cmath>
-#include <chrono>
 
 Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     // Motor* motorL1 = new Motor(): enable(), dir1(), dir2() {}
@@ -13,9 +10,6 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     UART * uart = new UART("/dev/ttyS0", 9600);
     Sensor * sensor = new Sensor();
     PID * pid = new PID();
-    // Kalman* kalman = new Kalman(); //do odkomentowania po implementacji klas
-    // ADXL* adxl = new ADXL();
-    // Gyro* gyro = new Gyro();
  }
 
  void Vechicle::resetPosition() {
@@ -72,7 +66,7 @@ void Vechicle::move(int xTarget, int yTarget) {
     bool isFirtIteration = true;
     if(xTarget < xPos) {
         moveForward();
-        while(xTarget < xPos) {
+        while(xTarget > xPos) {
             if(isFirtIteration)
             {
                 isFirtIteration = false;
@@ -88,13 +82,11 @@ void Vechicle::move(int xTarget, int yTarget) {
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 start = std::chrono::high_resolution_clock::now();
             }
-        // kalmanFilter -> getEstimatedPosition()
-        // aktualizujemy pozycje robota
         }
     }
     else {
         moveBack();
-        while(xTarget > xPos) {
+        while(xTarget < xPos) {
             if(isFirtIteration)
                 {
                     isFirtIteration = false;
@@ -131,9 +123,7 @@ void Vechicle::move(int xTarget, int yTarget) {
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 start = std::chrono::high_resolution_clock::now();
             }
-        // kalmanFilter -> getEstimatedPosition()
-        // aktualizujemy pozycje robota
-    }
+        }
     }
     else {
         moveLeft();
@@ -153,8 +143,6 @@ void Vechicle::move(int xTarget, int yTarget) {
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 start = std::chrono::high_resolution_clock::now();
             }
-        // kalmanFilter -> getEstimatedPosition()
-        // aktualizujemy pozycje robota
         }
     }
     moveStop();
@@ -239,7 +227,4 @@ Vechicle::~Vechicle() {
     delete uart;
     delete sensor;
     delete pid;
-    // delete kalman; //Do odkodowania po implementacij klas
-    // delete adxl;
-    // delete gyro;
 }
