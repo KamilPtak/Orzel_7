@@ -20,15 +20,12 @@ class Vechicle {
         UART* uart;
         Sensor* sensor;
         PID* pid;
-        // Kalman* kalman;
-        // Gyro* gyro;
 
         int xPos, yPos;
         int estimatedXPos, estimatedYPos;
 
     public:
         Vechicle();
-        //TODO - okreslenie ile ma trwac skecanie kolami 
         void decodeMessageFromClient(std::string msg);
         void move(std::string direction);  
         void move(int xTarget, int yTarget);
@@ -45,9 +42,6 @@ class Vechicle {
         void sendMoveData();
         
         void moveCalculations(std::chrono::high_resolution_clock::time_point* start, std::chrono::high_resolution_clock::time_point* stop, std::chrono::duration<double>* duration, bool* isFirstIteration);
-
-        // int getXPosition(float deltaT, float accelX, float accelY, int );
-        // int getYPosition(float deltaT, float accelX, float accelY);
 
         ~Vechicle();
 };

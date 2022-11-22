@@ -1,9 +1,4 @@
-#include <stdint.h>
-#include <wiringPi.h>
-#include <wiringPiI2C.h>
 #include "libSensor.hpp"
-#include <stdio.h>
-#include <cmath>
 
 #define MPU6050_GYRO_XOUT_H        0x43   // R
 #define MPU6050_GYRO_YOUT_H        0x45   // R

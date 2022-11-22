@@ -11,10 +11,7 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     Motor* motorR2 = new Motor();
     UART * uart = new UART("/dev/ttyS0", 9600);
     Sensor * sensor = new Sensor();
-    PID* pid = new PID();
-    // Kalman* kalman = new Kalman(); //do odkomentowania po implementacji klas
-    // ADXL* adxl = new ADXL();
-    // Gyro* gyro = new Gyro();
+    PID * pid = new PID();
  }
 
  void Vechicle::resetPosition() {
@@ -200,7 +197,4 @@ Vechicle::~Vechicle() {
     delete uart;
     delete sensor;
     delete pid;
-    // delete kalman; //Do odkodowania po implementacij klas
-    // delete adxl;
-    // delete gyro;
 }

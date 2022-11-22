@@ -17,7 +17,6 @@ void runRobotRun(std::pair<std::string, Vechicle*> inputPair) {
 }
 
 
-
 int main(int argc, char *argv[]) {
 
     if (argc != 2) {
@@ -30,7 +29,6 @@ int main(int argc, char *argv[]) {
     
     TCPServer* tcp = new TCPServer(port);
     Vechicle* vechicle = new Vechicle();
-    // Kalman* kalman = new Kalman();
 
     try{
         std::queue<std::string> messageQueue;
@@ -47,8 +45,7 @@ int main(int argc, char *argv[]) {
                     std::thread childThread(runRobotRun, std::make_pair(msg, std::ref(vechicle)));
                     childThread.detach();
                 }
-            // vechicle->decodeMessageFromClient(rcvData);
-            
+            // vechicle->decodeMessageFromClient(rcvData);   
         }
     }
     catch (Exception& e){
@@ -57,7 +54,6 @@ int main(int argc, char *argv[]) {
 
     delete tcp;    
     delete vechicle;
-    // delete kalman;
 
     std::cerr<<"Thanks for a ride!!!"<<std::endl;
     return 0;
