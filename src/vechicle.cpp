@@ -8,10 +8,8 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     Motor* motorR1 = new Motor();
     Motor* motorR2 = new Motor();
     UART * uart = new UART("/dev/ttyS0", 9600);
-    uart->openSerialPort();
-    // Kalman* kalman = new Kalman(); //do odkomentowania po implementacji klas
-    // ADXL* adxl = new ADXL();
-    // Gyro* gyro = new Gyro();
+    Sensor * sensor = new Sensor();
+    PID * pid = new PID();
  }
 
 
@@ -65,35 +63,91 @@ void Vechicle::move(std::string direction) {
 
 
 void Vechicle::move(int xTarget, int yTarget) {
+    std::chrono::high_resolution_clock::time_point start, stop;
+    std::chrono::duration<double> duration;
+    bool isFirtIteration = true;
     if(xTarget < xPos) {
         moveForward();
-        while(xTarget < xPos) {
-        // kalmanFilter -> getEstimatedPosition()
-        // aktualizujemy pozycje robota
+        while(xTarget > xPos) {
+            if(isFirtIteration)
+            {
+                isFirtIteration = false;
+                pid->reset();
+                //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
+                start = std::chrono::high_resolution_clock::now();
+            }
+            else
+            {
+                stop = std::chrono::high_resolution_clock::now();
+                duration = stop - start;
+                getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+                //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
+                start = std::chrono::high_resolution_clock::now();
+            }
         }
     }
     else {
         moveBack();
-        while(xTarget > xPos) {
-        // kalmanFilter -> getEstimatedPosition()
-        // aktualizujemy pozycje robota
-        }
+        while(xTarget < xPos) {
+            if(isFirtIteration)
+                {
+                    isFirtIteration = false;
+                    pid->reset();
+                    //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
+                    start = std::chrono::high_resolution_clock::now();
+                }
+                else
+                {
+                    stop = std::chrono::high_resolution_clock::now();
+                    duration = stop - start;
+                    getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+                    //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
+                    start = std::chrono::high_resolution_clock::now();
+                }
+            }
     }
 
     if(yTarget < yPos) {
         moveRight();
         while(yTarget < yPos) {
-        // kalmanFilter -> getEstimatedPosition()
-        // aktualizujemy pozycje robota
-    }
+            if(isFirtIteration)
+            {
+                isFirtIteration = false;
+                pid->reset();
+                //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
+                start = std::chrono::high_resolution_clock::now();
+            }
+            else
+            {
+                stop = std::chrono::high_resolution_clock::now();
+                duration = stop - start;
+                getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+                //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
+                start = std::chrono::high_resolution_clock::now();
+            }
+        }
     }
     else {
         moveLeft();
         while(yTarget > yPos) {
-        // kalmanFilter -> getEstimatedPosition()
-        // aktualizujemy pozycje robota
+            if(isFirtIteration)
+            {
+                isFirtIteration = false;
+                pid->reset();
+                //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
+                start = std::chrono::high_resolution_clock::now();
+            }
+            else
+            {
+                stop = std::chrono::high_resolution_clock::now();
+                duration = stop - start;
+                getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+                //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
+                start = std::chrono::high_resolution_clock::now();
+            }
         }
     }
+    moveStop();
 }
 
 
@@ -103,6 +157,7 @@ void Vechicle::moveForward() {
     motorR1->turnForward();
     motorR2->turnForward();
     sendMoveData();
+    //dodac obsluge PID co bedzie korygowala tor jazdy
 }
 void Vechicle::moveBack() {
     motorL1->turnBack();
@@ -110,6 +165,7 @@ void Vechicle::moveBack() {
     motorR1->turnBack();
     motorR2->turnBack();
     sendMoveData();
+    //dodac obsluge PID co bedzie korygowala tor jazdy
 }
 void Vechicle::moveLeft() {
     motorL1->turnBack();
@@ -117,6 +173,7 @@ void Vechicle::moveLeft() {
     motorR1->turnForward();
     motorR2->turnBack();
     sendMoveData();
+    //dodac obsluge PID co bedzie korygowala tor jazdy
 }
 void Vechicle::moveRight() {
     motorL1->turnForward();
@@ -124,6 +181,7 @@ void Vechicle::moveRight() {
     motorR1->turnBack();
     motorR2->turnForward();
     sendMoveData();
+    //dodac obsluge PID co bedzie korygowala tor jazdy
 }
 void Vechicle::moveStop() {
     motorL1->stop();
@@ -146,13 +204,23 @@ void Vechicle::printEsimatedPosition() {
     std::cerr<<"Estimated Y position"<<estimatedYPos<<"\n";
 }
 
+void Vechicle::getPosition(double deltaT, int accelX, int accelY, float angle)//sprawdzic jednostki !!!!!
+{
+    float tempX = accelX * cos(angle) + accelY * sin(angle);
+    float tempY = accelX * cos(angle) - accelY * sin(angle);
+    for(int i = 0; i<2; i++)
+    {
+        tempX = integral(tempX, deltaT);
+        tempY = integral(tempY, deltaT);
+    }
+    xPos = tempX;
+    yPos = tempY;
+}
 
-
- void Vechicle::resetPosition() {
-    xPos = 0;
-    yPos = 0;
- }
-
+float integral(float integratedValue, float timeStep)
+{
+    return integratedValue*timeStep;
+}
 
 Vechicle::~Vechicle() {
     moveStop();
@@ -162,7 +230,6 @@ Vechicle::~Vechicle() {
     delete motorR1;
     delete motorR2;
     delete uart;
-    // delete kalman; //Do odkodowania po implementacij klas
-    // delete adxl;
-    // delete gyro;
+    delete sensor;
+    delete pid;
 }

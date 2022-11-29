@@ -1,12 +1,13 @@
 #include <iostream>
 #include <string>
+#include <cmath>
+#include <chrono>
 
 #include "motor.hpp"
-#include "adxl345.hpp"
 #include "uart.hpp"
-#include "kalman.hpp"
-#include "gyro.hpp"
+#include "PID.hpp"
 #include "myExceptions.hpp"
+#include "libSensor.hpp"
 
 #pragma once
 
@@ -17,15 +18,13 @@ class Vechicle {
         Motor* motorL1;
         Motor* motorL2;
         UART* uart;
-        Kalman* kalman;
-        Gyro* gyro;
+        Sensor* sensor;
 
         int xPos, yPos;
         int estimatedXPos, estimatedYPos;
 
     public:
         Vechicle();
-        //TODO - okreslenie ile ma trwac skecanie kolami 
         void decodeMessageFromClient(std::string msg);
         void move(std::string direction);  
         void move(int xTarget, int yTarget);
@@ -38,7 +37,7 @@ class Vechicle {
 
         void printEsimatedPosition();
         void resetPosition();
-        int getPosition();
+        void getPosition(double deltaT, int accelX, int accelY, float angle);
         void sendMoveData();
 
         ~Vechicle();

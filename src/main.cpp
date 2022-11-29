@@ -7,14 +7,12 @@
 
 #include "TCPconnection.hpp" 
 #include "vechicle.hpp"
-#include "kalman.hpp"
 
 #define SPEAKER 0
 #define LISTENER 1
 uint port = 80001;
 
 void runRobotRun(std::pair<std::string, Vechicle*> inputPair);
-
 
 int main(int argc, char *argv[]) {
 
@@ -28,7 +26,6 @@ int main(int argc, char *argv[]) {
     
     TCPServer* tcp = new TCPServer(port);
     Vechicle* vechicle = new Vechicle();
-    // Kalman* kalman = new Kalman();
 
     try{
         std::queue<std::string> messageQueue;
@@ -39,6 +36,14 @@ int main(int argc, char *argv[]) {
         while(rcvData != "close") {
             rcvData = tcp->receiveData(SPEAKER); 
             std::cout<<"Received message: "<<rcvData<<"\n";
+            messageQueue.push(rcvData);
+                if(messageQueue.size() != 0 ) {
+                    auto msg = messageQueue.front();
+                    messageQueue.pop();
+                    std::thread childThread(runRobotRun, std::make_pair(msg, std::ref(vechicle)));
+                    childThread.detach();
+                }
+            // vechicle->decodeMessageFromClient(rcvData);   
         }
         
         // while(rcvData != "close") {
@@ -59,7 +64,6 @@ int main(int argc, char *argv[]) {
 
     delete tcp;    
     delete vechicle;
-    // delete kalman;
 
     std::cerr<<"Thanks for a ride!!!"<<std::endl;
     return 0;
