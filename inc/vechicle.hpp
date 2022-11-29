@@ -4,10 +4,8 @@
 #include <chrono>
 
 #include "motor.hpp"
-#include "adxl345.hpp"
 #include "uart.hpp"
 #include "PID.hpp"
-#include "gyro.hpp"
 #include "myExceptions.hpp"
 #include "libSensor.hpp"
 
