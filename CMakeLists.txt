@@ -10,24 +10,21 @@ include_directories(${inc})
 include_directories(${src})
 
 add_executable("${PROJECT_NAME}"    src/main.cpp
-                                    src/kalman.cpp
                                     src/motor.cpp
                                     src/vechicle.cpp
                                     src/TCPconnection.cpp
                                     src/uart.cpp
-                                    src/adxl345.cpp
-                                    src/gyro.cpp
+                                    src/libSensor.cpp
                                     
                                     
-                                    inc/kalman.hpp
                                     inc/motor.hpp
                                     inc/vechicle.hpp
                                     inc/myExceptions.hpp
                                     inc/userTypeDefs.hpp
                                     inc/TCPconnection.hpp
                                     inc/uart.hpp
-                                    inc/adxl345.hpp
-                                    inc/gyro.hpp
+                                    inc/libSensor.hpp
+                                    WiringPi/wiringPi.h
                                     )
 
 target_link_libraries("${PROJECT_NAME}"  pthread )
