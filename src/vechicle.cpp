@@ -1,5 +1,7 @@
 #include "vechicle.hpp"
 
+float integral(float integratedValue, float timeStep);
+
 Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     // Motor* motorL1 = new Motor(): enable(), dir1(), dir2() {}
     // Docelowo do uzycia bedzie konstruktor z argumentami, jak zaczniemy podpinac piny
@@ -8,7 +10,7 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     Motor* motorR1 = new Motor();
     Motor* motorR2 = new Motor();
     UART * uart = new UART("/dev/ttyS0", 9600);
-    Sensor * sensor = new Sensor();
+    // Sensor * sensor = new Sensor();
     PID * pid = new PID();
  }
 
@@ -80,7 +82,7 @@ void Vechicle::move(int xTarget, int yTarget) {
             {
                 stop = std::chrono::high_resolution_clock::now();
                 duration = stop - start;
-                getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+                // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 start = std::chrono::high_resolution_clock::now();
             }
@@ -100,7 +102,7 @@ void Vechicle::move(int xTarget, int yTarget) {
                 {
                     stop = std::chrono::high_resolution_clock::now();
                     duration = stop - start;
-                    getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+                    // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
                     //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                     start = std::chrono::high_resolution_clock::now();
                 }
@@ -121,7 +123,7 @@ void Vechicle::move(int xTarget, int yTarget) {
             {
                 stop = std::chrono::high_resolution_clock::now();
                 duration = stop - start;
-                getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+                // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 start = std::chrono::high_resolution_clock::now();
             }
@@ -141,7 +143,7 @@ void Vechicle::move(int xTarget, int yTarget) {
             {
                 stop = std::chrono::high_resolution_clock::now();
                 duration = stop - start;
-                getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+                // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 start = std::chrono::high_resolution_clock::now();
             }
@@ -222,6 +224,12 @@ float integral(float integratedValue, float timeStep)
     return integratedValue*timeStep;
 }
 
+void Vechicle::resetPosition()
+{
+    xPos = 0;
+    yPos = 0;
+}
+
 Vechicle::~Vechicle() {
     moveStop();
     resetPosition();
@@ -230,6 +238,6 @@ Vechicle::~Vechicle() {
     delete motorR1;
     delete motorR2;
     delete uart;
-    delete sensor;
+    // delete sensor;
     delete pid;
 }

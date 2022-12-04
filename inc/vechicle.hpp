@@ -18,7 +18,8 @@ class Vechicle {
         Motor* motorL1;
         Motor* motorL2;
         UART* uart;
-        Sensor* sensor;
+        // Sensor* sensor;
+        PID* pid;
 
         int xPos, yPos;
         int estimatedXPos, estimatedYPos;
