@@ -20,11 +20,11 @@ int main()
         mpu->getOffsets(aOff, aOff+1, aOff+2, gOff, gOff+1, gOff+2);
         for(int i = 0; i<3; i++)
         {
-            std::cout<<"Axis "<<aAxis[i]<<": "<<aRaw[i]<<" - raw, "<<a[i]<<std::endl;
+            std::cout<<"Axis raw "<<aAxis[i]<<": "<<aRaw[i]<<", scaled: "<<a[i]<<std::endl;
         }
         for(int i = 0; i<3; i++)
         {
-            std::cout<<"Axis "<<gAxis[i]<<": "<<gRaw[i]<<" - raw, "<<g[i]<<std::endl;
+            std::cout<<"Axis raw"<<gAxis[i]<<": "<<gRaw[i]<<" , scaled: "<<g[i]<<std::endl;
         }
         std::cout<<"Accel offsets "<<aOff[0]<<", "<<aOff[1]<<", "<<aOff[2]<<std::endl;
         std::cout<<"Gyro offsets "<<gOff[0]<<", "<<gOff[1]<<", "<<gOff[2]<<std::endl;

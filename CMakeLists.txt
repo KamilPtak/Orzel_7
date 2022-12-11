@@ -9,7 +9,7 @@ enable_testing()
 include_directories(${inc})
 include_directories(${src})
 
-add_executable("${PROJECT_NAME}"    src/main.cpp
+add_executable("${PROJECT_NAME}"    #src/main.cpp
                                     src/motor.cpp
                                     src/vechicle.cpp
                                     src/TCPconnection.cpp
