@@ -83,7 +83,7 @@ void Vechicle::move(int xTarget, int yTarget) {
             {
                 stop = std::chrono::high_resolution_clock::now();
                 duration = stop - start;
-                // getPosition(duration.count(), mpu->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+                getPosition(duration.count());
                 // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 start = std::chrono::high_resolution_clock::now();
@@ -208,8 +208,13 @@ void Vechicle::printEsimatedPosition() {
     std::cerr<<"Estimated Y position"<<estimatedYPos<<"\n";
 }
 
-void Vechicle::getPosition(double deltaT, int accelX, int accelY, float angle)//sprawdzic jednostki !!!!!
+void Vechicle::getPosition(double deltaT)//sprawdzic jednostki !!!!!
 {
+    mpu->getAccel(ax, ay, az);
+    mpu->getGyro(gR, gP, gY);
+    float accelX = (*ax)*g;
+    float accelY = (*ay)*g;
+    float angle = (*gY)*deltaT; //yaw
     float tempX = accelX * cos(angle) + accelY * sin(angle);
     float tempY = accelX * cos(angle) - accelY * sin(angle);
     for(int i = 0; i<2; i++)

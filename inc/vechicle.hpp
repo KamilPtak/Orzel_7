@@ -12,6 +12,8 @@
 
 #pragma once
 
+#define g 9.81 //przyspieszenie ziemskie
+
 class Vechicle {
     private:
         Motor* motorR1;
@@ -25,6 +27,9 @@ class Vechicle {
 
         int xPos, yPos;
         int estimatedXPos, estimatedYPos;
+
+        float *ax, *ay, *az; //tutaj wpisywane beda dane z accel
+        float *gR, *gP, *gY; //tutaj wpisywane beda dane z gyro
 
     public:
         Vechicle();
@@ -40,7 +45,7 @@ class Vechicle {
 
         void printEsimatedPosition();
         void resetPosition();
-        void getPosition(double deltaT, int accelX, int accelY, float angle);
+        void getPosition(double deltaT); //gyro daje w stopnie/s
         void sendMoveData();
 
         ~Vechicle();
