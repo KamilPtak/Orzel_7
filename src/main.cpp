@@ -42,6 +42,7 @@ int main(int argc, char *argv[]) {
                     messageQueue.pop();
                     std::thread childThread(runRobotRun, std::make_pair(msg, std::ref(vechicle)));
                     childThread.detach();
+                    std::cout<<"main thread!!!!";
                 }
             // vechicle->decodeMessageFromClient(rcvData);   
         }

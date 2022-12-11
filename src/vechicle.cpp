@@ -12,6 +12,7 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     UART * uart = new UART("/dev/ttyS0", 9600);
     // Sensor * sensor = new Sensor();
     PID * pid = new PID();
+    MPU6050 * mpu = new MPU6050(0x68);
  }
 
 
@@ -82,6 +83,7 @@ void Vechicle::move(int xTarget, int yTarget) {
             {
                 stop = std::chrono::high_resolution_clock::now();
                 duration = stop - start;
+                // getPosition(duration.count(), mpu->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
                 // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 start = std::chrono::high_resolution_clock::now();

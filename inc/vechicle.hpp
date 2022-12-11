@@ -7,7 +7,8 @@
 #include "uart.hpp"
 #include "PID.hpp"
 #include "myExceptions.hpp"
-#include "libSensor.hpp"
+// #include "libSensor.hpp"
+#include "MPU6050.h"
 
 #pragma once
 
@@ -20,6 +21,7 @@ class Vechicle {
         UART* uart;
         // Sensor* sensor;
         PID* pid;
+        MPU6050* mpu;
 
         int xPos, yPos;
         int estimatedXPos, estimatedYPos;

@@ -17,6 +17,7 @@ add_executable("${PROJECT_NAME}"    src/main.cpp
                                     # src/libSensor.cpp
                                     src/PID.cpp
                                     src/MPU6050.cpp
+                                    src/imuTest.cpp
                                     
                                     
                                     inc/motor.hpp
