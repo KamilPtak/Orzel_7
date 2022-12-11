@@ -219,11 +219,11 @@ void Vechicle::getPosition(double deltaT)//sprawdzic jednostki !!!!!
     float tempY = accelX * cos(angle) - accelY * sin(angle);
     for(int i = 0; i<2; i++)
     {
-        tempX = integral(tempX, deltaT);
-        tempY = integral(tempY, deltaT);
+        tempX += integral(tempX, deltaT);
+        tempY += integral(tempY, deltaT);
     }
-    xPos = tempX;
-    yPos = tempY;
+    xPos += tempX;
+    yPos += tempY;
 }
 
 float integral(float integratedValue, float timeStep)

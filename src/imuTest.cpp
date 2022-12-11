@@ -5,7 +5,8 @@
 
 #define G 9.81;
 float a[3], g[3];
-void getPosition(double deltaT);
+float X=0, Y=0;
+void getPosition(float deltaT);
 float integral(float integratedValue, float timeStep);
 int main()
 {
@@ -19,7 +20,7 @@ int main()
     char gAxis[3] = {'R', 'P', 'Y'};
     bool isFirtIteration = true;
     std::chrono::high_resolution_clock::time_point start, stop;
-    std::chrono::duration<double> duration;
+    std::chrono::duration<float> duration;
 
     while(1)
     {
@@ -61,7 +62,7 @@ int main()
 
     return 0;
 }
-void getPosition(double deltaT)//sprawdzic jednostki !!!!!
+void getPosition(float deltaT)//sprawdzic jednostki !!!!!
 {
     float accelX = a[0]*G;
     float accelY = a[1]*G;
@@ -70,11 +71,13 @@ void getPosition(double deltaT)//sprawdzic jednostki !!!!!
     float tempY = accelX * cos(angle) - accelY * sin(angle);
     for(int i = 0; i<2; i++)
     {
-        tempX = integral(tempX, deltaT);
-        tempY = integral(tempY, deltaT);
+        tempX += integral(tempX, deltaT);
+        tempY += integral(tempY, deltaT);
     }
-    std::cout<<"X: "<<tempX<<std::endl;
-    std::cout<<"Y: "<<tempY<<std::endl;
+    X+=tempX;
+    Y+=tempY;
+    std::cout<<"X: "<<X<<std::endl;
+    std::cout<<"Y: "<<Y<<std::endl;
 }
 float integral(float integratedValue, float timeStep)
 {
