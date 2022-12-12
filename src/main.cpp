@@ -4,6 +4,7 @@
 #include <thread>
 #include <utility>
 #include <queue>
+#include <unistd.h>
 
 #include "TCPconnection.hpp" 
 #include "vechicle.hpp"
@@ -24,47 +25,39 @@ int main(int argc, char *argv[]) {
         std::cerr<<"The program launched on port "<<port<<"\n";
     }
     
-    TCPServer* tcp = new TCPServer(port);
-    Vechicle* vechicle = new Vechicle();
 
     try{
+        TCPServer* tcp = new TCPServer(port);
+        Vechicle* vechicle = new Vechicle();
+
         std::queue<std::string> messageQueue;
         std::string rcvData = "";
         tcp->createConnection();
 
 
-        while(rcvData != "close") {
+        do {
             rcvData = tcp->receiveData(SPEAKER); 
             std::cout<<"Received message: "<<rcvData<<"\n";
             messageQueue.push(rcvData);
-                if(messageQueue.size() != 0 ) {
-                    auto msg = messageQueue.front();
-                    messageQueue.pop();
-                    std::thread childThread(runRobotRun, std::make_pair(msg, std::ref(vechicle)));
-                    childThread.detach();
-                    std::cout<<"main thread!!!!";
-                }
-            // vechicle->decodeMessageFromClient(rcvData);   
-        }
-        
-        // while(rcvData != "close") {
-        //     rcvData = tcp->receiveData(SPEAKER);
-        //     std::cout<<"Received message: "<<rcvData<<"\n";
-        //     messageQueue.push(rcvData);
-        //         if(messageQueue.size() != 0 ) {
-        //             auto msg = messageQueue.front();
-        //             messageQueue.pop();
-        //             std::thread childThread(runRobotRun, std::make_pair(msg, std::ref(vechicle)));
-        //             childThread.detach();
-        //         }
-        // }
+
+            if(messageQueue.size() != 0 ) {
+                auto msg = messageQueue.front();
+                messageQueue.pop();
+                vechicle->decodeMessageFromClient(rcvData); 
+            }
+            else {
+                std::cout<<"Waiting for message"<<"\n";
+                usleep(200);
+            }
+        } while (rcvData != "close");
+        delete tcp;    
+        delete vechicle;
     }
     catch (Exception& e){
         std::cerr<<"Exception!!!"<<"\n"<<e.what()<<"\n";  
     }
 
-    delete tcp;    
-    delete vechicle;
+
 
     std::cerr<<"Thanks for a ride!!!"<<std::endl;
     return 0;

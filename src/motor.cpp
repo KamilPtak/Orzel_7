@@ -34,12 +34,12 @@ void Motor::turnBack() {
 }
 
 inline const std::string Motor::boolToString(bool b){
-    return b ? "true" : "false";
+    return b ? "true " : "false";
 }
 
 std::string Motor::packDataToSend() {
     std::string steeringData;
-    steeringData = std::to_string(motorID ) + ":" + std::to_string(speed) + ":" + boolToString(dir1) + ":" + boolToString(dir2);
+    steeringData = " Speed: " + std::to_string(speed) + " dir1: " + boolToString(dir1) + " dir2: " + boolToString(dir2);
     return steeringData;
 }
 

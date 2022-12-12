@@ -5,11 +5,15 @@ float integral(float integratedValue, float timeStep);
 Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     // Motor* motorL1 = new Motor(): enable(), dir1(), dir2() {}
     // Docelowo do uzycia bedzie konstruktor z argumentami, jak zaczniemy podpinac piny
-    Motor* motorL1 = new Motor();
-    Motor* motorL2 = new Motor();
-    Motor* motorR1 = new Motor();
-    Motor* motorR2 = new Motor();
-    UART * uart = new UART("/dev/ttyS0", 9600);
+    Motor motorL1;
+    Motor motorL2;
+    Motor motorR1;
+    Motor motorR2;
+    // Motor* motorL1 = new Motor();
+    // Motor* motorL2 = new Motor();
+    // Motor* motorR1 = new Motor();
+    // Motor* motorR2 = new Motor();
+    UART uart("/dev/ttyS0", 9600);
     // Sensor * sensor = new Sensor();
     PID * pid = new PID();
     MPU6050 * mpu = new MPU6050(0x68);
@@ -57,6 +61,9 @@ void Vechicle::move(std::string direction) {
     else if(direction == "stop") {
         moveStop();
         // kalmanFilter -> getEstimatedPosition()
+    }
+    else if(direction == "close") {
+        std::cout<<"OK! I will close TCP connection and stop!"<<"\n";
     }
     else {
         moveStop();
@@ -156,50 +163,59 @@ void Vechicle::move(int xTarget, int yTarget) {
 
 
 void Vechicle::moveForward() {
-    motorL1->turnForward();
-    motorL2->turnForward();
-    motorR1->turnForward();
-    motorR2->turnForward();
+    motorL1.turnForward();
+    motorL2.turnForward();
+    motorR1.turnForward();
+    motorR2.turnForward();
     sendMoveData();
     //dodac obsluge PID co bedzie korygowala tor jazdy
 }
 void Vechicle::moveBack() {
-    motorL1->turnBack();
-    motorL2->turnBack();
-    motorR1->turnBack();
-    motorR2->turnBack();
+    motorL1.turnBack();
+    motorL2.turnBack();
+    motorR1.turnBack();
+    motorR2.turnBack();
     sendMoveData();
     //dodac obsluge PID co bedzie korygowala tor jazdy
 }
 void Vechicle::moveLeft() {
-    motorL1->turnBack();
-    motorL2->turnForward();
-    motorR1->turnForward();
-    motorR2->turnBack();
+    motorL1.turnBack();
+    motorL2.turnForward();
+    motorR1.turnForward();
+    motorR2.turnBack();
     sendMoveData();
     //dodac obsluge PID co bedzie korygowala tor jazdy
 }
 void Vechicle::moveRight() {
-    motorL1->turnForward();
-    motorL2->turnBack();
-    motorR1->turnBack();
-    motorR2->turnForward();
+    motorL1.turnForward();
+    motorL2.turnBack();
+    motorR1.turnBack();
+    motorR2.turnForward();
     sendMoveData();
     //dodac obsluge PID co bedzie korygowala tor jazdy
 }
 void Vechicle::moveStop() {
-    motorL1->stop();
-    motorL2->stop();
-    motorR1->stop();
-    motorR2->stop();
+    motorL1.stop();
+    motorL2.stop();
+    motorR1.stop();
+    motorR2.stop();
     sendMoveData();
 }
 
 
 void Vechicle::sendMoveData(){
     std::string moveBitsToSend;
-    moveBitsToSend = motorL1->packDataToSend() + motorL2->packDataToSend() + motorR1->packDataToSend() + motorR2->packDataToSend();
-    uart->pushData(moveBitsToSend);
+    moveBitsToSend = "MotorL1: " + motorL1.packDataToSend() + "\n";
+    uart.pushData(moveBitsToSend);
+
+    moveBitsToSend = "MotorL2: " + motorL2.packDataToSend() + "\n";
+    uart.pushData(moveBitsToSend);
+
+    moveBitsToSend = "MotorR1: " + motorR1.packDataToSend() + "\n";
+    uart.pushData(moveBitsToSend);
+
+    moveBitsToSend = "MotorR2: " + motorR2.packDataToSend() + "\n";
+    uart.pushData(moveBitsToSend);
 }
 
 
@@ -240,11 +256,11 @@ void Vechicle::resetPosition()
 Vechicle::~Vechicle() {
     moveStop();
     resetPosition();
-    delete motorL1;
-    delete motorL2;
-    delete motorR1;
-    delete motorR2;
-    delete uart;
+    // delete motorL1;
+    // delete motorL2;
+    // delete motorR1;
+    // delete motorR2;
+    // delete uart;
     // delete sensor;
     delete pid;
 }
