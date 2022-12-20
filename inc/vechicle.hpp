@@ -16,11 +16,11 @@
 
 class Vechicle {
     private:
-        Motor* motorR1;
-        Motor* motorR2;
-        Motor* motorL1;
-        Motor* motorL2;
-        UART* uart;
+        Motor motorR1;
+        Motor motorR2;
+        Motor motorL1;
+        Motor motorL2;
+        UART uart;
         // Sensor* sensor;
         PID* pid;
         MPU6050* mpu;
