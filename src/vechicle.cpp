@@ -269,4 +269,5 @@ Vechicle::~Vechicle() {
     // delete uart;
     // delete sensor;
     delete pid;
+    delete mpu;
 }
