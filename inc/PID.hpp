@@ -12,7 +12,7 @@ class PID {
 		PID();
 		void PIDcalculateOutput(double error, double deltaT);//jak zaimpelemntowac liczenie sterowania na poszczegolne kola???
 		void reset();
-		void setPreviousError(double e);
+		// void setPreviousError(double e);
 };
 
 

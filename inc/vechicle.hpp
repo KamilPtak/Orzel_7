@@ -31,6 +31,8 @@ class Vechicle {
         float *ax, *ay, *az; //tutaj wpisywane beda dane z accel
         float *gR, *gP, *gY; //tutaj wpisywane beda dane z gyro
 
+        std::chrono::high_resolution_clock::time_point start_stopwatch, stop_stopwatch;
+
     public:
         Vechicle();
         void decodeMessageFromClient(std::string msg);
@@ -45,7 +47,7 @@ class Vechicle {
 
         void printEsimatedPosition();
         void resetPosition();
-        void getPosition(double deltaT); //gyro daje w stopnie/s
+        void getPosition(float *angle); //gyro daje w stopnie/s
         void sendMoveData();
 
         ~Vechicle();

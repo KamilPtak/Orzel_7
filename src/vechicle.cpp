@@ -66,10 +66,11 @@ void Vechicle::move(std::string direction) {
 
 
 void Vechicle::move(int xTarget, int yTarget) {
-    std::chrono::high_resolution_clock::time_point start, stop;
-    std::chrono::duration<double> duration;
+    // std::chrono::high_resolution_clock::time_point start, stop;
+    // std::chrono::duration<double> duration;
     bool isFirtIteration = true;
-    if(xTarget < xPos) {
+    float angle;
+    if(xTarget < xPos) { //zalozenia: y+ do przodu, y- do tylu, x+ w prawo, x- w lewo, ale trzeba to sprawdzic
         moveForward();
         while(xTarget > xPos) {
             if(isFirtIteration)
@@ -77,16 +78,16 @@ void Vechicle::move(int xTarget, int yTarget) {
                 isFirtIteration = false;
                 pid->reset();
                 //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
-                start = std::chrono::high_resolution_clock::now();
+                start_stopwatch = std::chrono::high_resolution_clock::now();
             }
             else
             {
-                stop = std::chrono::high_resolution_clock::now();
-                duration = stop - start;
-                getPosition(duration.count());
+                // stop = std::chrono::high_resolution_clock::now();
+                // duration = stop - start;
+                getPosition(&angle);
                 // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
-                //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                start = std::chrono::high_resolution_clock::now();
+                // pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
+                // start = std::chrono::high_resolution_clock::now();
             }
         }
     }
@@ -98,15 +99,15 @@ void Vechicle::move(int xTarget, int yTarget) {
                     isFirtIteration = false;
                     pid->reset();
                     //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
-                    start = std::chrono::high_resolution_clock::now();
+                    start_stopwatch = std::chrono::high_resolution_clock::now();
                 }
                 else
                 {
-                    stop = std::chrono::high_resolution_clock::now();
-                    duration = stop - start;
-                    // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+                    // stop = std::chrono::high_resolution_clock::now();
+                    // duration = stop - start;
+                    getPosition(&angle);
                     //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                    start = std::chrono::high_resolution_clock::now();
+                    // start = std::chrono::high_resolution_clock::now();
                 }
             }
     }
@@ -119,15 +120,15 @@ void Vechicle::move(int xTarget, int yTarget) {
                 isFirtIteration = false;
                 pid->reset();
                 //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
-                start = std::chrono::high_resolution_clock::now();
+                start_stopwatch = std::chrono::high_resolution_clock::now();
             }
             else
             {
-                stop = std::chrono::high_resolution_clock::now();
-                duration = stop - start;
-                // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+                // stop = std::chrono::high_resolution_clock::now();
+                // duration = stop - start;
+                getPosition(&angle);
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                start = std::chrono::high_resolution_clock::now();
+                // start = std::chrono::high_resolution_clock::now();
             }
         }
     }
@@ -139,15 +140,15 @@ void Vechicle::move(int xTarget, int yTarget) {
                 isFirtIteration = false;
                 pid->reset();
                 //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
-                start = std::chrono::high_resolution_clock::now();
+                start_stopwatch = std::chrono::high_resolution_clock::now();
             }
             else
             {
-                stop = std::chrono::high_resolution_clock::now();
-                duration = stop - start;
-                // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
+                // stop = std::chrono::high_resolution_clock::now();
+                // duration = stop - start;
+                getPosition(&angle);
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                start = std::chrono::high_resolution_clock::now();
+                // start = std::chrono::high_resolution_clock::now();
             }
         }
     }
@@ -208,15 +209,19 @@ void Vechicle::printEsimatedPosition() {
     std::cerr<<"Estimated Y position"<<estimatedYPos<<"\n";
 }
 
-void Vechicle::getPosition(double deltaT)//sprawdzic jednostki !!!!!
+void Vechicle::getPosition(float *angle)//sprawdzic jednostki !!!!!
 {
     mpu->getAccel(ax, ay, az);
     mpu->getGyro(gR, gP, gY);
     float accelX = (*ax)*g;
     float accelY = (*ay)*g;
-    float angle = (*gY)*deltaT; //yaw
-    float tempX = accelX * cos(angle) + accelY * sin(angle);
-    float tempY = accelX * cos(angle) - accelY * sin(angle);
+    stop_stopwatch = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration = stop_stopwatch - start_stopwatch;
+    double deltaT = duration.count();
+    // float angle = (*gY)*deltaT; //yaw
+    *angle = (*gY)*deltaT; //yaw
+    float tempX = accelX * cos(*angle) + accelY * sin(*angle);
+    float tempY = accelX * cos(*angle) - accelY * sin(*angle);
     for(int i = 0; i<2; i++)
     {
         tempX += integral(tempX, deltaT);
@@ -224,6 +229,7 @@ void Vechicle::getPosition(double deltaT)//sprawdzic jednostki !!!!!
     }
     xPos += tempX;
     yPos += tempY;
+    start_stopwatch = std::chrono::high_resolution_clock::now();
 }
 
 float integral(float integratedValue, float timeStep)
