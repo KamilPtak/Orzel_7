@@ -3,20 +3,14 @@
 float integral(float integratedValue, float timeStep);
 
 Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
-    // Motor* motorL1 = new Motor(): enable(), dir1(), dir2() {}
     // Docelowo do uzycia bedzie konstruktor z argumentami, jak zaczniemy podpinac piny
     Motor motorL1;
     Motor motorL2;
     Motor motorR1;
     Motor motorR2;
-    // Motor* motorL1 = new Motor();
-    // Motor* motorL2 = new Motor();
-    // Motor* motorR1 = new Motor();
-    // Motor* motorR2 = new Motor();
     UART uart("/dev/ttyS0", 9600);
-    // Sensor * sensor = new Sensor();
-    PID * pid = new PID();
-    MPU6050 * mpu = new MPU6050(0x68);
+    PID pid;
+    MPU6050* mpu = new MPU6050(0x68);
  }
 
 
@@ -44,23 +38,18 @@ void Vechicle::decodeMessageFromClient(std::string msg) {
 void Vechicle::move(std::string direction) {
     if(direction == "forward") {
         moveForward();
-        // kalmanFilter -> getEstimatedPosition()
     }
     else if(direction == "back") {
         moveBack();
-        // kalmanFilter -> getEstimatedPosition()
     }
     else if(direction == "left") {
         moveLeft();
-        // kalmanFilter -> getEstimatedPosition()
     }
     else if (direction == "right") {
         moveRight();
-        // kalmanFilter -> getEstimatedPosition()
     }
     else if(direction == "stop") {
         moveStop();
-        // kalmanFilter -> getEstimatedPosition()
     }
     else if(direction == "close") {
         std::cout<<"OK! I will close TCP connection and stop!"<<"\n";
@@ -73,48 +62,31 @@ void Vechicle::move(std::string direction) {
 
 
 void Vechicle::move(int xTarget, int yTarget) {
-    // std::chrono::high_resolution_clock::time_point start, stop;
-    // std::chrono::duration<double> duration;
     bool isFirtIteration = true;
     float angle;
     if(xTarget < xPos) { //zalozenia: y+ do przodu, y- do tylu, x+ w prawo, x- w lewo, ale trzeba to sprawdzic
         moveForward();
         while(xTarget > xPos) {
-            if(isFirtIteration)
-            {
+            if(isFirtIteration) {
                 isFirtIteration = false;
-                pid->reset();
-                //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
+                pid.reset();
                 start_stopwatch = std::chrono::high_resolution_clock::now();
             }
-            else
-            {
-                // stop = std::chrono::high_resolution_clock::now();
-                // duration = stop - start;
+            else {
                 getPosition(&angle);
-                // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
-                // pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                // start = std::chrono::high_resolution_clock::now();
             }
         }
     }
     else {
         moveBack();
         while(xTarget < xPos) {
-            if(isFirtIteration)
-                {
+            if(isFirtIteration) {
                     isFirtIteration = false;
-                    pid->reset();
-                    //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
+                    pid.reset();
                     start_stopwatch = std::chrono::high_resolution_clock::now();
                 }
-                else
-                {
-                    // stop = std::chrono::high_resolution_clock::now();
-                    // duration = stop - start;
+                else {
                     getPosition(&angle);
-                    //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                    // start = std::chrono::high_resolution_clock::now();
                 }
             }
     }
@@ -122,40 +94,26 @@ void Vechicle::move(int xTarget, int yTarget) {
     if(yTarget < yPos) {
         moveRight();
         while(yTarget < yPos) {
-            if(isFirtIteration)
-            {
+            if(isFirtIteration) {
                 isFirtIteration = false;
-                pid->reset();
-                //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
+                pid.reset();
                 start_stopwatch = std::chrono::high_resolution_clock::now();
             }
-            else
-            {
-                // stop = std::chrono::high_resolution_clock::now();
-                // duration = stop - start;
+            else {
                 getPosition(&angle);
-                //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                // start = std::chrono::high_resolution_clock::now();
             }
         }
     }
     else {
         moveLeft();
         while(yTarget > yPos) {
-            if(isFirtIteration)
-            {
+            if(isFirtIteration) {
                 isFirtIteration = false;
-                pid->reset();
-                //pid->setPreviousError(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX());
+                pid.reset();
                 start_stopwatch = std::chrono::high_resolution_clock::now();
             }
-            else
-            {
-                // stop = std::chrono::high_resolution_clock::now();
-                // duration = stop - start;
+            else {
                 getPosition(&angle);
-                //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                // start = std::chrono::high_resolution_clock::now();
             }
         }
     }
@@ -225,8 +183,7 @@ void Vechicle::printEsimatedPosition() {
     std::cerr<<"Estimated Y position"<<estimatedYPos<<"\n";
 }
 
-void Vechicle::getPosition(float *angle)//sprawdzic jednostki !!!!!
-{
+void Vechicle::getPosition(float *angle) {
     mpu->getAccel(ax, ay, az);
     mpu->getGyro(gR, gP, gY);
     float accelX = (*ax)*g;
@@ -248,13 +205,11 @@ void Vechicle::getPosition(float *angle)//sprawdzic jednostki !!!!!
     start_stopwatch = std::chrono::high_resolution_clock::now();
 }
 
-float integral(float integratedValue, float timeStep)
-{
+float integral(float integratedValue, float timeStep) {
     return integratedValue*timeStep;
 }
 
-void Vechicle::resetPosition()
-{
+void Vechicle::resetPosition() {
     xPos = 0;
     yPos = 0;
 }
@@ -262,12 +217,4 @@ void Vechicle::resetPosition()
 Vechicle::~Vechicle() {
     moveStop();
     resetPosition();
-    // delete motorL1;
-    // delete motorL2;
-    // delete motorR1;
-    // delete motorR2;
-    // delete uart;
-    // delete sensor;
-    delete pid;
-    delete mpu;
 }

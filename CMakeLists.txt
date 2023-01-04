@@ -14,11 +14,8 @@ add_executable("${PROJECT_NAME}"    src/main.cpp
                                     src/vechicle.cpp
                                     src/TCPconnection.cpp
                                     src/uart.cpp
-                                    # src/libSensor.cpp
                                     src/PID.cpp
                                     src/MPU6050.cpp
-                                    src/imuTest.cpp
-                                    
                                     
                                     inc/motor.hpp
                                     inc/vechicle.hpp
@@ -28,8 +25,6 @@ add_executable("${PROJECT_NAME}"    src/main.cpp
                                     inc/uart.hpp
                                     inc/PID.hpp
                                     inc/MPU6050.h
-                                    # inc/libSensor.hpp
-                                    # WiringPi/wiringPi.h
                                     )
 
 target_link_libraries("${PROJECT_NAME}"  pthread )

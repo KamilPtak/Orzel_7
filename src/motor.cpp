@@ -8,7 +8,8 @@ Motor::Motor(): enablePin(0), dir1Pin(1), dir2Pin(2), id(motorID++){
     dir2 = false;
 }
 
-Motor::Motor(uint8_t enablePin_, uint8_t dir1Pin_, uint8_t dir2Pin_): speed(0), enablePin(enablePin_), dir1Pin(dir1Pin_), dir2Pin(dir2Pin_), id(motorID++) {
+Motor::Motor(uint8_t enablePin_, uint8_t dir1Pin_, uint8_t dir2Pin_):
+      speed(0), enablePin(enablePin_), dir1Pin(dir1Pin_), dir2Pin(dir2Pin_), id(motorID++) {
     speed = 0;
     dir1 = false;
     dir2 = false;
@@ -42,5 +43,3 @@ std::string Motor::packDataToSend() {
     steeringData = " Speed: " + std::to_string(speed) + " dir1: " + boolToString(dir1) + " dir2: " + boolToString(dir2);
     return steeringData;
 }
-
-
