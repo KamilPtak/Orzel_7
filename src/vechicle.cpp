@@ -77,7 +77,7 @@ void Vechicle::move(int xTarget, int yTarget) {
                 // stop = std::chrono::high_resolution_clock::now();
                 // duration = stop - start;
                 getPosition(&angle, &deltaT);
-                pid->PIDcalculateOutput(angle, deltaT, 0);//zalozenie: w X jest 0, jak robot jedzie do przodu to jedzie wzdluz X
+                pid.PIDcalculateOutput(angle, deltaT, 0);//zalozenie: w X jest 0, jak robot jedzie do przodu to jedzie wzdluz X
                 // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
                 // pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 // start = std::chrono::high_resolution_clock::now();
@@ -97,7 +97,7 @@ void Vechicle::move(int xTarget, int yTarget) {
                     // stop = std::chrono::high_resolution_clock::now();
                     // duration = stop - start;
                     getPosition(&angle, &deltaT);
-                    pid->PIDcalculateOutput(angle, deltaT, 2);//zalozenie: w X jest 0, jak robot jedzie do tylu to jedzie wzdluz 180 stopni (-X)
+                    pid.PIDcalculateOutput(angle, deltaT, 2);//zalozenie: w X jest 0, jak robot jedzie do tylu to jedzie wzdluz 180 stopni (-X)
                     //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                     // start = std::chrono::high_resolution_clock::now();
                 }
@@ -117,7 +117,7 @@ void Vechicle::move(int xTarget, int yTarget) {
                 // stop = std::chrono::high_resolution_clock::now();
                 // duration = stop - start;
                 getPosition(&angle, &deltaT);
-                pid->PIDcalculateOutput(angle, deltaT, 3);//zalozenie: w X jest 0, jak robot jedzie w prawo to jedzie wzdluz 270 stopni (Y+)
+                pid.PIDcalculateOutput(angle, deltaT, 3);//zalozenie: w X jest 0, jak robot jedzie w prawo to jedzie wzdluz 270 stopni (Y+)
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 // start = std::chrono::high_resolution_clock::now();
             }
@@ -136,7 +136,7 @@ void Vechicle::move(int xTarget, int yTarget) {
                 // stop = std::chrono::high_resolution_clock::now();
                 // duration = stop - start;
                 getPosition(&angle, &deltaT);
-                pid->PIDcalculateOutput(angle, deltaT, 1);//zalozenie: w X jest 0, jak robot jedzie w lewo to jedzie wzdluz 90 stopni (Y-)
+                pid.PIDcalculateOutput(angle, deltaT, 1);//zalozenie: w X jest 0, jak robot jedzie w lewo to jedzie wzdluz 90 stopni (Y-)
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 // start = std::chrono::high_resolution_clock::now();
             }
