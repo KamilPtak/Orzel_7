@@ -47,7 +47,7 @@ class Vechicle {
 
         void printEsimatedPosition();
         void resetPosition();
-        void getPosition(float *angle); //gyro daje w stopnie/s
+        void getPosition(float *angle, float *deltaT); //gyro daje w stopnie/s
         void sendMoveData();
 
         ~Vechicle();

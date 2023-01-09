@@ -1,6 +1,6 @@
 #include "vechicle.hpp"
 
-float integral(float integratedValue, float timeStep);
+// float integral(float integratedValue, float timeStep);
 
 Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     // Motor* motorL1 = new Motor(): enable(), dir1(), dir2() {}
@@ -17,7 +17,7 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     // Sensor * sensor = new Sensor();
     PID * pid = new PID();
     MPU6050 * mpu = new MPU6050(0x68);
- }
+}
 
 
 void Vechicle::decodeMessageFromClient(std::string msg) {
@@ -76,7 +76,7 @@ void Vechicle::move(int xTarget, int yTarget) {
     // std::chrono::high_resolution_clock::time_point start, stop;
     // std::chrono::duration<double> duration;
     bool isFirtIteration = true;
-    float angle;
+    float angle, deltaT;
     if(xTarget < xPos) { //zalozenia: y+ do przodu, y- do tylu, x+ w prawo, x- w lewo, ale trzeba to sprawdzic
         moveForward();
         while(xTarget > xPos) {
@@ -91,7 +91,8 @@ void Vechicle::move(int xTarget, int yTarget) {
             {
                 // stop = std::chrono::high_resolution_clock::now();
                 // duration = stop - start;
-                getPosition(&angle);
+                getPosition(&angle, &deltaT);
+                pid->PIDcalculateOutput(angle, deltaT, 0);//zalozenie: w X jest 0, jak robot jedzie do przodu to jedzie wzdluz X
                 // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
                 // pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 // start = std::chrono::high_resolution_clock::now();
@@ -112,7 +113,8 @@ void Vechicle::move(int xTarget, int yTarget) {
                 {
                     // stop = std::chrono::high_resolution_clock::now();
                     // duration = stop - start;
-                    getPosition(&angle);
+                    getPosition(&angle, &deltaT);
+                    pid->PIDcalculateOutput(angle, deltaT, 2);//zalozenie: w X jest 0, jak robot jedzie do tylu to jedzie wzdluz 180 stopni (-X)
                     //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                     // start = std::chrono::high_resolution_clock::now();
                 }
@@ -133,7 +135,8 @@ void Vechicle::move(int xTarget, int yTarget) {
             {
                 // stop = std::chrono::high_resolution_clock::now();
                 // duration = stop - start;
-                getPosition(&angle);
+                getPosition(&angle, &deltaT);
+                pid->PIDcalculateOutput(angle, deltaT, 3);//zalozenie: w X jest 0, jak robot jedzie w prawo to jedzie wzdluz 270 stopni (Y+)
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 // start = std::chrono::high_resolution_clock::now();
             }
@@ -153,7 +156,8 @@ void Vechicle::move(int xTarget, int yTarget) {
             {
                 // stop = std::chrono::high_resolution_clock::now();
                 // duration = stop - start;
-                getPosition(&angle);
+                getPosition(&angle, &deltaT);
+                pid->PIDcalculateOutput(angle, deltaT, 1);//zalozenie: w X jest 0, jak robot jedzie w lewo to jedzie wzdluz 90 stopni (Y-)
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 // start = std::chrono::high_resolution_clock::now();
             }
@@ -225,33 +229,36 @@ void Vechicle::printEsimatedPosition() {
     std::cerr<<"Estimated Y position"<<estimatedYPos<<"\n";
 }
 
-void Vechicle::getPosition(float *angle)//sprawdzic jednostki !!!!!
+void Vechicle::getPosition(float *angle, float *deltaT)//sprawdzic jednostki !!!!!
 {
     mpu->getAccel(ax, ay, az);
     mpu->getGyro(gR, gP, gY);
     float accelX = (*ax)*g;
     float accelY = (*ay)*g;
     stop_stopwatch = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration = stop_stopwatch - start_stopwatch;
-    double deltaT = duration.count();
+    std::chrono::duration<float> duration = stop_stopwatch - start_stopwatch;
+    // double deltaT = duration.count();
+    *deltaT = duration.count();
     // float angle = (*gY)*deltaT; //yaw
-    *angle = (*gY)*deltaT; //yaw
+    *angle = (*gY)*(*deltaT); //yaw
     float tempX = accelX * cos(*angle) + accelY * sin(*angle);
     float tempY = accelX * cos(*angle) - accelY * sin(*angle);
     for(int i = 0; i<2; i++)
     {
-        tempX += integral(tempX, deltaT);
-        tempY += integral(tempY, deltaT);
+        // tempX += integral(tempX, *deltaT);
+        // tempY += integral(tempY, *deltaT);
+        tempX += tempX*(*deltaT);
+        tempY += tempY*(*deltaT);
     }
     xPos += tempX;
     yPos += tempY;
     start_stopwatch = std::chrono::high_resolution_clock::now();
 }
 
-float integral(float integratedValue, float timeStep)
-{
-    return integratedValue*timeStep;
-}
+// float integral(float integratedValue, float timeStep)
+// {
+//     return integratedValue*timeStep;
+// }
 
 void Vechicle::resetPosition()
 {

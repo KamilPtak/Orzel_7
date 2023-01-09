@@ -10,7 +10,7 @@ class PID {
 		double integral, previousError;
 	public:
 		PID();
-		void PIDcalculateOutput(double error, double deltaT);//jak zaimpelemntowac liczenie sterowania na poszczegolne kola???
+		void PIDcalculateOutput(float error, float deltaT, int direction);//jak zaimpelemntowac liczenie sterowania na poszczegolne kola???
 		void reset();
 		// void setPreviousError(double e);
 };
