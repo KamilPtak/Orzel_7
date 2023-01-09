@@ -7,12 +7,11 @@
 #include "uart.hpp"
 #include "PID.hpp"
 #include "myExceptions.hpp"
-// #include "libSensor.hpp"
 #include "MPU6050.h"
 
 #pragma once
 
-#define g 9.81 //przyspieszenie ziemskie
+#define g 9.81 
 
 class Vechicle {
     private:
@@ -21,8 +20,7 @@ class Vechicle {
         Motor motorL1;
         Motor motorL2;
         UART uart;
-        // Sensor* sensor;
-        PID* pid;
+        PID pid;
         MPU6050* mpu;
 
         int xPos, yPos;
