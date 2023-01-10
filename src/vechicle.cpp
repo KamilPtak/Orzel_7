@@ -178,6 +178,20 @@ void Vechicle::moveRight() {
     sendMoveData();
     //dodac obsluge PID co bedzie korygowala tor jazdy
 }
+void Vechicle::rotateLeft(){
+    motorL1.turnBack();
+    motorL2.turnBack();
+    motorR1.turnForward();
+    motorR2.turnForward();
+    sendMoveData();
+}
+void Vechicle::rotateRight(){
+    motorL1.turnForward();
+    motorL2.turnForward();
+    motorR1.turnBack();
+    motorR2.turnBack();
+    sendMoveData();
+}
 void Vechicle::moveStop() {
     motorL1.stop();
     motorL2.stop();

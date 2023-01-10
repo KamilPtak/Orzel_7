@@ -42,6 +42,8 @@ class Vechicle {
         void moveLeft();
         void moveRight();
         void moveStop();
+        void rotateLeft();
+        void rotateRight();
 
         void printEsimatedPosition();
         void resetPosition();

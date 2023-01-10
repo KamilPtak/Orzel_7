@@ -16,6 +16,7 @@ add_executable("${PROJECT_NAME}"    src/main.cpp
                                     src/uart.cpp
                                     src/PID.cpp
                                     src/MPU6050.cpp
+                                    src/imuTest.cpp
                                     
                                     inc/motor.hpp
                                     inc/vechicle.hpp

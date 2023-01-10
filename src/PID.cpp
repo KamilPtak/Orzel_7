@@ -9,7 +9,6 @@ void PID::PIDcalculateOutput(float error, float deltaT, int direction)//jak zaim
     switch (direction)
     {
         case 0: //do przodu
-
     }
     //dekodowanie sterowania, czyli jak minus to jakie kolo przyspieszane/spowalniane itp
 }
