@@ -13,7 +13,6 @@ add_executable("${PROJECT_NAME}"    src/main.cpp
                                     src/motor.cpp
                                     src/vechicle.cpp
                                     src/TCPconnection.cpp
-                                    src/uart.cpp
                                     src/PID.cpp
                                     src/MPU6050.cpp
                                     src/imuTest.cpp
@@ -21,9 +20,7 @@ add_executable("${PROJECT_NAME}"    src/main.cpp
                                     inc/motor.hpp
                                     inc/vechicle.hpp
                                     inc/myExceptions.hpp
-                                    inc/userTypeDefs.hpp
                                     inc/TCPconnection.hpp
-                                    inc/uart.hpp
                                     inc/PID.hpp
                                     inc/MPU6050.h
                                     )

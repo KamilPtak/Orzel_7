@@ -9,7 +9,6 @@
 #include <vector>
 #include <algorithm>
 
-#include "userTypeDefs.hpp"
 #include "myExceptions.hpp"
 
 #pragma once
