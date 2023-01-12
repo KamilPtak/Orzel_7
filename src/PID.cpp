@@ -5,7 +5,7 @@ PID::PID(): integral(0), previousError(0){};
 void PID::PIDcalculateOutput(float error, float deltaT, int direction)//jak zaimpelemntowac liczenie sterowania na poszczegolne kola???
 {
     double output = k*(error+1/Ti*error*deltaT+(error-previousError)/deltaT);
-
+    //ODWORTNIE DO WSKAZOWEK ZEGARA JEST MINUS NA ZYROSKOPIE, ZGODNIE JEST PLUS
     switch (direction)
     {
         case 0: //do przodu
