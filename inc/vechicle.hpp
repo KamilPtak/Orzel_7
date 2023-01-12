@@ -18,10 +18,10 @@ class Vechicle {
         Motor motorR2;
         Motor motorL1;
         Motor motorL2;
-        PID pid;
+        TrackController trackController;
         MPU6050* mpu;
 
-        int xPos, yPos;
+        int xPos, yPos, currentPosReference;
         int estimatedXPos, estimatedYPos;
 
         float *ax, *ay, *az; //tutaj wpisywane beda dane z accel
@@ -47,7 +47,7 @@ class Vechicle {
 
         void printEsimatedPosition();
         void resetPosition();
-        void getPosition(float *angle, float *deltaT); //gyro daje w stopnie/s
+        void getPosition(float *deltaT); //gyro daje w stopnie/s
         void sendMoveData();
 
         ~Vechicle();

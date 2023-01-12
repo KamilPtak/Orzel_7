@@ -8,7 +8,7 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     Motor motorL2;
     Motor motorR1;
     Motor motorR2;
-    PID pid;
+    TrackController trackController;
     MPU6050* mpu = new MPU6050(0x68);
  }
 
@@ -62,21 +62,32 @@ void Vechicle::move(std::string direction) {
 
 void Vechicle::move(int xTarget, int yTarget) {
     bool isFirtIteration = true;
-    float angle, deltaT;
-    if(xTarget < xPos) { //zalozenia: y+ do przodu, y- do tylu, x+ w prawo, x- w lewo, ale trzeba to sprawdzic
+    float deltaT;
+    char rotate;
+    if(xTarget < xPos) { //zalozenia: x+ do przodu, x- do tylu, y+ w prawo, y- w lewo, ale trzeba to sprawdzic
         moveForward();
-        while(xTarget > xPos) {
+        while(xTarget > yPos) {
+            moveForward(); //zatrzymanie rotacji i jazda dalej
             if(isFirtIteration) {
                 isFirtIteration = false;
-                pid.reset();
+                // pid.reset();
+                currentPosReference = xPos;
                 start_stopwatch = std::chrono::high_resolution_clock::now();
             }
             else
             {
                 // stop = std::chrono::high_resolution_clock::now();
                 // duration = stop - start;
-                getPosition(&angle, &deltaT);
-                pid.PIDcalculateOutput(angle, deltaT, 0);//zalozenie: w X jest 0, jak robot jedzie do przodu to jedzie wzdluz X
+                getPosition(&deltaT);
+                rotate = trackController.ControllerCalculateOutput(currentPosReference-xPos, deltaT, 0);//zalozenie: w X jest 0, jak robot jedzie do przodu to jedzie wzdluz X
+                if (rotate == 'r')
+                {
+                    rotateRight();
+                }
+                else
+                {
+                    rotateLeft();
+                }
                 // getPosition(duration.count(), sensor->getAccelX(), sensor->getAccelY(), sensor->getAngleX());
                 // pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 // start = std::chrono::high_resolution_clock::now();
@@ -86,37 +97,57 @@ void Vechicle::move(int xTarget, int yTarget) {
     else {
         moveBack();
         while(xTarget < xPos) {
+            moveBack(); //zatrzymanie rotacji i jazda dalej
             if(isFirtIteration) {
                     isFirtIteration = false;
-                    pid.reset();
+                    // pid.reset();
+                    currentPosReference = yPos;
                     start_stopwatch = std::chrono::high_resolution_clock::now();
+                }
+            else
+            {
+                // stop = std::chrono::high_resolution_clock::now();
+                // duration = stop - start;
+                getPosition(&deltaT);
+                rotate = trackController.ControllerCalculateOutput(currentPosReference-xPos, deltaT, 2);//zalozenie: w X jest 0, jak robot jedzie do tylu to jedzie wzdluz 180 stopni (-X)
+                if (rotate == 'r')
+                {
+                    rotateRight();
                 }
                 else
                 {
-                    // stop = std::chrono::high_resolution_clock::now();
-                    // duration = stop - start;
-                    getPosition(&angle, &deltaT);
-                    pid.PIDcalculateOutput(angle, deltaT, 2);//zalozenie: w X jest 0, jak robot jedzie do tylu to jedzie wzdluz 180 stopni (-X)
-                    //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
-                    // start = std::chrono::high_resolution_clock::now();
+                    rotateLeft();
                 }
+                //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
+                // start = std::chrono::high_resolution_clock::now();
+            }
             }
     }
 
     if(yTarget < yPos) {
         moveRight();
         while(yTarget < yPos) {
+            moveRight(); //zatrzymanie rotacji i jazda dalej
             if(isFirtIteration) {
                 isFirtIteration = false;
-                pid.reset();
+                // pid.reset();
+                currentPosReference = xPos;
                 start_stopwatch = std::chrono::high_resolution_clock::now();
             }
             else
             {
                 // stop = std::chrono::high_resolution_clock::now();
                 // duration = stop - start;
-                getPosition(&angle, &deltaT);
-                pid.PIDcalculateOutput(angle, deltaT, 3);//zalozenie: w X jest 0, jak robot jedzie w prawo to jedzie wzdluz 270 stopni (Y+)
+                getPosition(&deltaT);
+                rotate = trackController.ControllerCalculateOutput(currentPosReference-yPos, deltaT, 3);//zalozenie: w X jest 0, jak robot jedzie w prawo to jedzie wzdluz 270 stopni (Y+)
+                if (rotate == 'r')
+                    {
+                        rotateRight();
+                    }
+                else
+                {
+                    rotateLeft();
+                }
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 // start = std::chrono::high_resolution_clock::now();
             }
@@ -125,17 +156,27 @@ void Vechicle::move(int xTarget, int yTarget) {
     else {
         moveLeft();
         while(yTarget > yPos) {
+            moveLeft(); //zatrzymanie rotacji i jazda dalej
             if(isFirtIteration) {
                 isFirtIteration = false;
-                pid.reset();
+                // pid.reset();
+                currentPosReference = xPos;
                 start_stopwatch = std::chrono::high_resolution_clock::now();
             }
             else
             {
                 // stop = std::chrono::high_resolution_clock::now();
                 // duration = stop - start;
-                getPosition(&angle, &deltaT);
-                pid.PIDcalculateOutput(angle, deltaT, 1);//zalozenie: w X jest 0, jak robot jedzie w lewo to jedzie wzdluz 90 stopni (Y-)
+                getPosition(&deltaT);
+                rotate = trackController.ControllerCalculateOutput(currentPosReference-yPos, deltaT, 1);//zalozenie: w X jest 0, jak robot jedzie w lewo to jedzie wzdluz 90 stopni (Y-)
+                if (rotate == 'r')
+                {
+                    rotateRight();
+                }
+                else
+                {
+                    rotateLeft();
+                }
                 //pid->PIDcalculateOutput(WARTOSC_W_TYM_PRZYPADKU - sensor->getAngleX(), duration.count());
                 // start = std::chrono::high_resolution_clock::now();
             }
@@ -230,7 +271,7 @@ void Vechicle::printEsimatedPosition() {
     std::cerr<<"Estimated Y position"<<estimatedYPos<<"\n";
 }
 
-void Vechicle::getPosition(float *angle, float *deltaT)//sprawdzic jednostki !!!!!
+void Vechicle::getPosition(float *deltaT)//sprawdzic jednostki !!!!!
 {
     mpu->getAccel(ax, ay, az);
     mpu->getGyro(gR, gP, gY);
@@ -240,10 +281,10 @@ void Vechicle::getPosition(float *angle, float *deltaT)//sprawdzic jednostki !!!
     std::chrono::duration<float> duration = stop_stopwatch - start_stopwatch;
     // double deltaT = duration.count();
     *deltaT = duration.count();
-    // float angle = (*gY)*deltaT; //yaw
-    *angle = (*gY)*(*deltaT); //yaw
-    float tempX = accelX * cos(*angle) + accelY * sin(*angle);
-    float tempY = accelX * cos(*angle) - accelY * sin(*angle);
+    float angle = (*gY)*(*deltaT); //yaw
+    // *angle = (*gY)*(*deltaT); //yaw
+    float tempX = accelX * cos(angle) + accelY * sin(angle);
+    float tempY = accelX * cos(angle) - accelY * sin(angle);
     for(int i = 0; i<2; i++)
     {
         // tempX += integral(tempX, *deltaT);
