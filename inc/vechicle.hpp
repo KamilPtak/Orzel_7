@@ -4,7 +4,6 @@
 #include <chrono>
 
 #include "motor.hpp"
-#include "uart.hpp"
 #include "PID.hpp"
 #include "myExceptions.hpp"
 #include "MPU6050.h"
@@ -19,7 +18,6 @@ class Vechicle {
         Motor motorR2;
         Motor motorL1;
         Motor motorL2;
-        UART uart;
         PID pid;
         MPU6050* mpu;
 
@@ -44,6 +42,8 @@ class Vechicle {
         void moveStop();
         void rotateLeft();
         void rotateRight();
+        
+        void pushData(std::string msg);
 
         void printEsimatedPosition();
         void resetPosition();

@@ -8,7 +8,6 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     Motor motorL2;
     Motor motorR1;
     Motor motorR2;
-    UART uart("/dev/ttyS0", 9600);
     PID pid;
     MPU6050* mpu = new MPU6050(0x68);
  }
@@ -201,19 +200,28 @@ void Vechicle::moveStop() {
 }
 
 
+void Vechicle::pushData(std::string msg) {
+    std::string module = "python3 sender.py ";
+    std::string command = module + msg;
+
+    const char* cmd = command.c_str();
+    system(cmd);
+}
+
+
 void Vechicle::sendMoveData(){
     std::string moveBitsToSend;
-    moveBitsToSend = "MotorL1: " + motorL1.packDataToSend() + "\n";
-    uart.pushData(moveBitsToSend);
+    moveBitsToSend = "ID0_" + motorL1.packDataToSend() + "\n";
+    pushData(moveBitsToSend);
 
-    moveBitsToSend = "MotorL2: " + motorL2.packDataToSend() + "\n";
-    uart.pushData(moveBitsToSend);
+    moveBitsToSend = "ID1_" + motorL2.packDataToSend() + "\n";
+    pushData(moveBitsToSend);
 
-    moveBitsToSend = "MotorR1: " + motorR1.packDataToSend() + "\n";
-    uart.pushData(moveBitsToSend);
+    moveBitsToSend = "ID2_" + motorR1.packDataToSend() + "\n";
+    pushData(moveBitsToSend);
 
-    moveBitsToSend = "MotorR2: " + motorR2.packDataToSend() + "\n";
-    uart.pushData(moveBitsToSend);
+    moveBitsToSend = "ID3_: " + motorR2.packDataToSend() + "\n";
+    pushData(moveBitsToSend);
 }
 
 
