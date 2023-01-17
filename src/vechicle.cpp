@@ -253,15 +253,10 @@ void Vechicle::pushData(std::string msg) {
 void Vechicle::sendMoveData(){
     std::string moveBitsToSend;
     moveBitsToSend = "ID0_" + motorL1.packDataToSend() + "\n";
-    pushData(moveBitsToSend);
-
-    moveBitsToSend = "ID1_" + motorL2.packDataToSend() + "\n";
-    pushData(moveBitsToSend);
-
-    moveBitsToSend = "ID2_" + motorR1.packDataToSend() + "\n";
-    pushData(moveBitsToSend);
-
-    moveBitsToSend = "ID3_: " + motorR2.packDataToSend() + "\n";
+    moveBitsToSend += "ID1_" + motorL2.packDataToSend() + "\n";
+    moveBitsToSend += "ID2_" + motorR1.packDataToSend() + "\n";
+    moveBitsToSend += "ID3_: " + motorR2.packDataToSend() + "\n";
+    std::cerr<<moveBitsToSend<<"\n";
     pushData(moveBitsToSend);
 }
 
