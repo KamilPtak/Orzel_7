@@ -1,4 +1,0 @@
-/home/kamil/Desktop/Client/build/CMakeFiles/rebuild_cache.dir
-/home/kamil/Desktop/Client/build/CMakeFiles/edit_cache.dir
-/home/kamil/Desktop/Client/build/CMakeFiles/test.dir
-/home/kamil/Desktop/Client/build/CMakeFiles/Client.dir
