@@ -19,11 +19,16 @@ int main(int argc, char *argv[]) {
 
     if (argc != 2) {
         std::cerr<< "Program launched on port "<<port
-                <<". To specify port run 'program <port>'\n";
+                <<". To specify port run 'program <port>'\n\n";
+        std::cerr<<"!=============NOTE=============!"<<"\n";
+        std::cerr<<"To set robot speed please use '_' instad od space."<<"\n\n";
+
     }
     else {
         port  = atoi(argv[1]);
-        std::cerr<<"The program launched on port "<<port<<"\n";
+        std::cerr<<"The program launched on port "<<port<<"\n\n";
+        std::cerr<<"!=============NOTE=============!"<<"\n";
+        std::cerr<<"To set robot speed please use '_' instad od space."<<"\n\n";
     }
 
     try{

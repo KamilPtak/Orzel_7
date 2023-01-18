@@ -12,26 +12,25 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0) {
     MPU6050* mpu = new MPU6050(0x68);
  }
 
+std::vector<std::string> Vechicle::tokenize(std::string s, std::string del = " ") {
+    std::vector<std::string> wordList;
+    int start, end = -1*del.size();
+    do {
+        start = end + del.size();
+        end = s.find(del, start);
+        wordList.push_back(s.substr(start, end - start));
+    } while (end != -1);
+    return wordList;
+}
 
 void Vechicle::decodeMessageFromClient(std::string msg) {
-    uint8_t pos = msg.find(" ");
-    std::string dir1, dir2;
+    std::vector<std::string> splittedMessage;
+    splittedMessage = tokenize(msg, "_");
 
-    if(pos > msg.length()){
-        move(msg);
+    if(splittedMessage.size() == 1)
+        move(splittedMessage.pop_back());
+        // TODO - dokoczyn podzial wiadomosci dir1 dir2 + speed
     }
-    else {
-        for(int i=0; i<msg.length(); i++) {
-            if(i < pos) {
-                dir1.push_back(msg[i]);
-            }
-            if(i > pos) {
-                dir2.push_back(msg[i]);
-            }
-        }
-        move(std::stoi(dir1), std::stoi(dir2));
-    }
-}
 // _________TODO_________
 // KONIECZNIE  ZAMOISTNEZATRZYMANIE ROBOTA 
 void Vechicle::move(std::string direction) {

@@ -36,9 +36,10 @@ class Vechicle {
         void moveStop();
         void rotateLeft();
         void rotateRight();
-        
-        void sendMoveData();
 
+        std::vector<std::string> tokenize(std::string s, std::string del = " ");
+        void sendMoveData();
+        
     public:
         Vechicle();
         void decodeMessageFromClient(std::string msg);
