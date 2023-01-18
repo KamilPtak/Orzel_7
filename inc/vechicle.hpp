@@ -2,8 +2,9 @@
 #include <string>
 #include <cmath>
 #include <chrono>
+#include <vector>
+#include <set>
 
-#include "motor.hpp"
 #include "PID.hpp"
 #include "myExceptions.hpp"
 #include "MPU6050.h"
@@ -14,37 +15,23 @@
 
 class Vechicle {
     private:
-        Motor motorR1;
-        Motor motorR2;
-        Motor motorL1;
-        Motor motorL2;
         TrackController trackController;
         MPU6050* mpu;
 
         int xPos, yPos, currentPosReference;
         int estimatedXPos, estimatedYPos;
-
         float *ax, *ay, *az; //tutaj wpisywane beda dane z accel
         float *gR, *gP, *gY; //tutaj wpisywane beda dane z gyro
-
         std::chrono::high_resolution_clock::time_point start_stopwatch, stop_stopwatch;
+        const std::set<std::string> commandSet;
 
-        void moveForward();
-        void moveBack();
-        void moveLeft();
-        void moveRight();
-        void moveStop();
-        void rotateLeft();
-        void rotateRight();
+        std::vector<std::string> tokenize(std::string s, std::string del);
+        void runUartScript(std::string);
 
-        std::vector<std::string> tokenize(std::string s, std::string del = " ");
-        void sendMoveData();
-        
     public:
         Vechicle();
         void decodeMessageFromClient(std::string msg);
         void move(std::string direction);  
-        void move(int xTarget, int yTarget);
         
         void printEsimatedPosition();
         void resetPosition();
