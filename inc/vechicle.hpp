@@ -29,12 +29,6 @@ class Vechicle {
 
         std::chrono::high_resolution_clock::time_point start_stopwatch, stop_stopwatch;
 
-    public:
-        Vechicle();
-        void decodeMessageFromClient(std::string msg);
-        void move(std::string direction);  
-        void move(int xTarget, int yTarget);
-
         void moveForward();
         void moveBack();
         void moveLeft();
@@ -43,12 +37,17 @@ class Vechicle {
         void rotateLeft();
         void rotateRight();
         
-        void pushData(std::string msg);
+        void sendMoveData();
 
+    public:
+        Vechicle();
+        void decodeMessageFromClient(std::string msg);
+        void move(std::string direction);  
+        void move(int xTarget, int yTarget);
+        
         void printEsimatedPosition();
         void resetPosition();
         void getPosition(float *deltaT); //gyro daje w stopnie/s
-        void sendMoveData();
 
         ~Vechicle();
 };

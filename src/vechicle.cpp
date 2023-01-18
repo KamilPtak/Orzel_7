@@ -241,23 +241,17 @@ void Vechicle::moveStop() {
 }
 
 
-void Vechicle::pushData(std::string msg) {
-    std::string module = "python3 sender.py ";
-    std::string command = module + msg;
-
-    const char* cmd = command.c_str();
-    system(cmd);
-}
-
-
 void Vechicle::sendMoveData(){
+    std::string module = "python3 sender.py ";
     std::string moveBitsToSend;
     moveBitsToSend = "ID0_" + motorL1.packDataToSend() + "\n";
     moveBitsToSend += "ID1_" + motorL2.packDataToSend() + "\n";
     moveBitsToSend += "ID2_" + motorR1.packDataToSend() + "\n";
     moveBitsToSend += "ID3_: " + motorR2.packDataToSend() + "\n";
-    std::cerr<<moveBitsToSend<<"\n";
-    pushData(moveBitsToSend);
+
+    std::string command = module + moveBitsToSend;
+    const char* cmd = command.c_str();
+    system(cmd);
 }
 
 

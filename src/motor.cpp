@@ -39,7 +39,5 @@ inline const std::string Motor::boolToString(bool b){
 }
 
 std::string Motor::packDataToSend() {
-    std::string steeringData;
-    steeringData = " Speed: " + std::to_string(speed) + " dir1: " + boolToString(dir1) + " dir2: " + boolToString(dir2);
-    return steeringData;
+    return std::to_string(speed) + "_" + boolToString(dir1) + "_" + boolToString(dir2);;
 }
