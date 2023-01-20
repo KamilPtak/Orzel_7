@@ -30,9 +30,9 @@ void Vechicle::decodeMessageFromClient(std::string msg) {
         std::string msg1 = splittedMessage[0];
         if(msg1 == "speed") {
             std::string msg2 = splittedMessage[1];
-            runUartScript(msg1+msg2);
+            runUartScript(msg1 + "_" + msg2);
         }
-        std::cout<<"wrong entry"<<"\n";
+        std::cout<<"Wrong entry"<<"\n";
     }
     else {
         std::cout<<"Wrong entry"<<"\n";
@@ -44,10 +44,9 @@ void Vechicle::move(std::string msg) {
         runUartScript(msg);
     }
     else {
-        std::cout<<"Command not known!"<<"\n";
+        std::cout<<"Unknown command!"<<"\n";
     }
 }
-
 
 void Vechicle::runUartScript(std::string msg){
     std::string module = "python3 sender.py ";
@@ -87,7 +86,6 @@ void Vechicle::getPosition(float *deltaT)//sprawdzic jednostki !!!!!
     yPos += tempY;
     start_stopwatch = std::chrono::high_resolution_clock::now();
 }
-
 
 void Vechicle::resetPosition() {
     xPos = 0;
