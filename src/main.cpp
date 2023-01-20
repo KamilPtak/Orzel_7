@@ -11,7 +11,7 @@
 
 #define SPEAKER 0
 #define LISTENER 1
-uint port = 80001;
+uint port = 80002;
 
 void runRobotRun(std::pair<std::string, Vechicle*> inputPair);
 
