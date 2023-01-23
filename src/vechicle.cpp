@@ -26,13 +26,8 @@ void Vechicle::decodeMessageFromClient(std::string msg) {
     if(splittedMessage.size() == 1) {
         move(splittedMessage.back());
     }
-    else if (splittedMessage.size() == 2) {
-        std::string msg1 = splittedMessage[0];
-        if(msg1 == "speed") {
-            std::string msg2 = splittedMessage[1];
-            runUartScript(msg1 + "_" + msg2);
-        }
-        std::cout<<"Wrong entry"<<"\n";
+    else if (splittedMessage.size() == 2 && splittedMessage[0] == "speed") {
+        runUartScript(splittedMessage[0] + "_" + splittedMessage[1]);
     }
     else {
         std::cout<<"Wrong entry"<<"\n";
