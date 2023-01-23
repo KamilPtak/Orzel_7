@@ -63,6 +63,7 @@ void Vechicle::getPosition()//sprawdzic jednostki !!!!!
     std::chrono::high_resolution_clock::time_point stop;
     std::chrono::duration<float> duration;
     float accelX, accelY, deltaT, tempX, tempY, angle;
+    int counter = 0;
     while(1)
     {
         mpu->getAccel(ax, ay, az);
@@ -87,6 +88,12 @@ void Vechicle::getPosition()//sprawdzic jednostki !!!!!
         yPos += tempY;
         start_stopwatch = std::chrono::high_resolution_clock::now();
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        counter++;
+        if (counter >= 10)
+        {
+            std::cout<<"X position:"<<xPos<<", Y position: "<<yPos<<std::endl;
+            counter = 0;
+        }
     }
     
 }
