@@ -4,6 +4,7 @@
 #include <chrono>
 #include <vector>
 #include <set>
+#include <thread>
 
 #include "PID.hpp"
 #include "myExceptions.hpp"
@@ -35,7 +36,7 @@ class Vechicle {
         
         void printEsimatedPosition();
         void resetPosition();
-        void getPosition(float *deltaT); //gyro daje w stopnie/s
+        void getPosition(); //gyro daje w stopnie/s
 
         ~Vechicle();
 };

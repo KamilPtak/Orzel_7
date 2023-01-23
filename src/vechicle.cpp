@@ -6,6 +6,7 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0), comm
     {"forward", "back", "left", "right", "stop", "L", "R"}) {
     TrackController trackController;
     MPU6050* mpu = new MPU6050(0x68);
+    std::thread(&Vechicle::getPosition, this).detach();
  }
 
 std::vector<std::string> Vechicle::tokenize(std::string s, std::string del) {
@@ -56,30 +57,38 @@ void Vechicle::printEsimatedPosition() {
     std::cerr<<"Estimated Y position"<<estimatedYPos<<"\n";
 }
 
-void Vechicle::getPosition(float *deltaT)//sprawdzic jednostki !!!!!
+void Vechicle::getPosition()//sprawdzic jednostki !!!!!
 {
-    mpu->getAccel(ax, ay, az);
-    mpu->getGyro(gR, gP, gY);
-    float accelX = (*ax)*g;
-    float accelY = (*ay)*g;
-    stop_stopwatch = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<float> duration = stop_stopwatch - start_stopwatch;
-    // double deltaT = duration.count();
-    *deltaT = duration.count();
-    float angle = (*gY)*(*deltaT); //yaw
-    // *angle = (*gY)*(*deltaT); //yaw
-    float tempX = accelX * cos(angle) + accelY * sin(angle);
-    float tempY = accelX * cos(angle) - accelY * sin(angle);
-    for(int i = 0; i<2; i++)
+    std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
+    std::chrono::high_resolution_clock::time_point stop;
+    std::chrono::duration<float> duration;
+    float accelX, accelY, deltaT, tempX, tempY, angle;
+    while(1)
     {
-        // tempX += integral(tempX, *deltaT);
-        // tempY += integral(tempY, *deltaT);
-        tempX += tempX*(*deltaT);
-        tempY += tempY*(*deltaT);
+        mpu->getAccel(ax, ay, az);
+        mpu->getGyro(gR, gP, gY);
+        accelX = (*ax)*g;
+        accelY = (*ay)*g;
+        stop_stopwatch = std::chrono::high_resolution_clock::now();
+        duration = stop_stopwatch - start_stopwatch;
+        // double deltaT = duration.count();
+        // *deltaT = duration.count();
+        deltaT = duration.count();
+        angle = (*gY)*deltaT; //yaw
+        // *angle = (*gY)*(*deltaT); //yaw
+        tempX = accelX * cos(angle) + accelY * sin(angle);
+        tempY = accelX * cos(angle) - accelY * sin(angle);
+        for(int i = 0; i<2; i++)
+        {
+            tempX += tempX*deltaT;
+            tempY += tempY*deltaT;
+        }
+        xPos += tempX;
+        yPos += tempY;
+        start_stopwatch = std::chrono::high_resolution_clock::now();
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
-    xPos += tempX;
-    yPos += tempY;
-    start_stopwatch = std::chrono::high_resolution_clock::now();
+    
 }
 
 void Vechicle::resetPosition() {
