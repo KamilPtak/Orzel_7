@@ -33,7 +33,7 @@ class Vechicle {
         Vechicle();
         void decodeMessageFromClient(std::string msg);
         void move(std::string direction);  
-        
+        void createPositionThread();
         void printEsimatedPosition();
         void resetPosition();
         void getPosition(); //gyro daje w stopnie/s

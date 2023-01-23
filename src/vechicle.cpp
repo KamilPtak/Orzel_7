@@ -6,8 +6,7 @@ Vechicle::Vechicle(): xPos(0), yPos(0), estimatedXPos(0), estimatedYPos(0), comm
     {"forward", "back", "left", "right", "stop", "L", "R"}) {
     TrackController trackController;
     MPU6050* mpu = new MPU6050(0x68);
-    std::thread(&Vechicle::getPosition, this).detach();
- }
+}
 
 std::vector<std::string> Vechicle::tokenize(std::string s, std::string del) {
     std::vector<std::string> wordList;
@@ -51,6 +50,10 @@ void Vechicle::runUartScript(std::string msg){
     system(cmd);
 }
 
+void Vechicle::createPositionThread()
+{
+    std::thread(&Vechicle::getPosition, this).detach();
+}
 
 void Vechicle::printEsimatedPosition() {
     std::cerr<<"Estimated X position"<<estimatedXPos<<"\n";
@@ -91,7 +94,7 @@ void Vechicle::getPosition()//sprawdzic jednostki !!!!!
         counter++;
         if (counter >= 10)
         {
-            std::cout<<"X position:"<<xPos<<", Y position: "<<yPos<<std::endl;
+            printEsimatedPosition();
             counter = 0;
         }
     }
