@@ -50,11 +50,6 @@ void Vechicle::runUartScript(std::string msg){
     system(cmd);
 }
 
-void Vechicle::createPositionThread()
-{
-    std::thread(&Vechicle::getPosition, this).detach();
-}
-
 void Vechicle::printEsimatedPosition() {
     std::cerr<<"Estimated X position"<<estimatedXPos<<"\n";
     std::cerr<<"Estimated Y position"<<estimatedYPos<<"\n";
@@ -67,38 +62,33 @@ void Vechicle::getPosition()//sprawdzic jednostki !!!!!
     std::chrono::duration<float> duration;
     float accelX, accelY, deltaT, tempX, tempY, angle;
     int counter = 0;
-    while(1)
-    {
-        mpu->getAccel(ax, ay, az);
-        mpu->getGyro(gR, gP, gY);
-        accelX = (*ax)*g;
-        accelY = (*ay)*g;
-        stop_stopwatch = std::chrono::high_resolution_clock::now();
-        duration = stop_stopwatch - start_stopwatch;
-        // double deltaT = duration.count();
-        // *deltaT = duration.count();
-        deltaT = duration.count();
-        angle = (*gY)*deltaT; //yaw
-        // *angle = (*gY)*(*deltaT); //yaw
-        tempX = accelX * cos(angle) + accelY * sin(angle);
-        tempY = accelX * cos(angle) - accelY * sin(angle);
-        for(int i = 0; i<2; i++)
-        {
-            tempX += tempX*deltaT;
-            tempY += tempY*deltaT;
-        }
-        xPos += tempX;
-        yPos += tempY;
-        start_stopwatch = std::chrono::high_resolution_clock::now();
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        counter++;
-        if (counter >= 10)
-        {
-            printEsimatedPosition();
-            counter = 0;
-        }
+
+    mpu->getAccel(ax, ay, az);
+    mpu->getGyro(gR, gP, gY);
+    accelX = (*ax)*g;
+    accelY = (*ay)*g;
+    stop_stopwatch = std::chrono::high_resolution_clock::now();
+    duration = stop_stopwatch - start_stopwatch;
+    // double deltaT = duration.count();
+    // *deltaT = duration.count();
+    deltaT = duration.count();
+    angle = (*gY)*deltaT; //yaw
+    // *angle = (*gY)*(*deltaT); //yaw
+    tempX = accelX * cos(angle) + accelY * sin(angle);
+    tempY = accelX * cos(angle) - accelY * sin(angle);
+    for(int i = 0; i<2; i++) {
+        tempX += tempX*deltaT;
+        tempY += tempY*deltaT;
     }
-    
+    xPos += tempX;
+    yPos += tempY;
+    start_stopwatch = std::chrono::high_resolution_clock::now();
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    counter++;
+    if (counter >= 10) {
+        printEsimatedPosition();
+        counter = 0;
+    }    
 }
 
 void Vechicle::resetPosition() {

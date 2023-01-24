@@ -11,14 +11,14 @@
 
 #define SPEAKER 0
 #define LISTENER 1
-uint port = 80002;
+uint port = 80001;
 
 int main(int argc, char *argv[]) {
 
     if (argc != 2) {
         std::cerr<<"\n"<<"!==============================!"<<"\n";
         std::cerr<< "Program launched on port "<<port
-                <<". To specify port run 'program <port>'\n\n";
+                <<". To specify port run 'program <port>'\n";
         std::cerr<<"!=============NOTE=============!"<<"\n";
         std::cerr<<"To set robot speed please use '_' instad of space."<<"\n\n";
 
@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
     else {
         port  = atoi(argv[1]);
         std::cerr<<"\n"<<"!==============================!"<<"\n";
-        std::cerr<<"The program launched on port "<<port<<"\n\n";
+        std::cerr<<"The program launched on port "<<port<<"\n";
         std::cerr<<"!=============NOTE=============!"<<"\n";
         std::cerr<<"To set robot speed please use '_' instad od space."<<"\n\n";
     }
@@ -38,8 +38,9 @@ int main(int argc, char *argv[]) {
         std::queue<std::string> messageQueue;
         std::string rcvData = "";
         tcp->createConnection();
-        vechicle->createPositionThread();
+        
         do {
+            // vechicle->getPosition();
             rcvData = tcp->receiveData(SPEAKER);
             std::cout<<"Received message: "<<rcvData<<"\n";
             messageQueue.push(rcvData);
@@ -55,6 +56,7 @@ int main(int argc, char *argv[]) {
             }
         } while (rcvData != "close");
             vechicle->decodeMessageFromClient("stop");
+            vechicle->resetPosition();
             delete tcp;
             delete vechicle;
     }

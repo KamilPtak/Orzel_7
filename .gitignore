@@ -1,2 +1,8 @@
 build/
 out
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+Makefile
+Orzel_7
+cmake_install.cmake
