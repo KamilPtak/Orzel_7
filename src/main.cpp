@@ -11,7 +11,7 @@
 
 #define SPEAKER 0
 #define LISTENER 1
-uint port = 80001;
+uint port = 80008;
 
 int main(int argc, char *argv[]) {
 
@@ -31,14 +31,12 @@ int main(int argc, char *argv[]) {
         std::cerr<<"To set robot speed please use '_' instad od space."<<"\n\n";
     }
 
-    try{
-        TCPServer* tcp = new TCPServer(port);
-        Vechicle* vechicle = new Vechicle();
-        
+    TCPServer* tcp = new TCPServer(port);
+    Vechicle* vechicle = new Vechicle();
+    try{        
         std::queue<std::string> messageQueue;
         std::string rcvData = "";
         tcp->createConnection();
-        
         do {
             // vechicle->getPosition();
             rcvData = tcp->receiveData(SPEAKER);
@@ -58,9 +56,10 @@ int main(int argc, char *argv[]) {
             vechicle->decodeMessageFromClient("stop");
             vechicle->resetPosition();
             delete tcp;
-            delete vechicle;
     }
-    catch (Exception& e){
+    catch (Exception& e) {
+        delete tcp;
+        delete vechicle;
         std::cerr<<"Exception!!!"<<"\n"<<e.what()<<"\n";
     }
 
