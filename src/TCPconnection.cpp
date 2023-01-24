@@ -1,4 +1,3 @@
-// https://www.geeksforgeeks.org/socket-programming-cc/
 #include "TCPconnection.hpp"
 
 

@@ -13,13 +13,13 @@ add_executable("${PROJECT_NAME}"
                 src/main.cpp
                 src/vechicle.cpp
                 src/TCPconnection.cpp
-                src/PID.cpp
+                src/trackController.cpp
                 src/MPU6050.cpp
                 
                 inc/vechicle.hpp
                 inc/myExceptions.hpp
                 inc/TCPconnection.hpp
-                inc/PID.hpp
+                inc/trackController.hpp
                 inc/MPU6050.h
                 )
 

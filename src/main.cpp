@@ -33,12 +33,12 @@ int main(int argc, char *argv[]) {
 
     TCPServer* tcp = new TCPServer(port);
     Vechicle* vechicle = new Vechicle();
+    //vechicle->createPositionThread();
     try{        
         std::queue<std::string> messageQueue;
         std::string rcvData = "";
         tcp->createConnection();
         do {
-            // vechicle->getPosition();
             rcvData = tcp->receiveData(SPEAKER);
             std::cout<<"Received message: "<<rcvData<<"\n";
             messageQueue.push(rcvData);

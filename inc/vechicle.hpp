@@ -6,7 +6,7 @@
 #include <set>
 #include <thread>
 
-#include "PID.hpp"
+#include "trackController.hpp"
 #include "myExceptions.hpp"
 #include "MPU6050.h"
 
@@ -36,6 +36,6 @@ class Vechicle {
         void printEsimatedPosition();
         void resetPosition();
         void getPosition(); //gyro daje w stopnie/s
-
+        void createPositionThread();
         ~Vechicle();
 };

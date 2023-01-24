@@ -1,12 +1,9 @@
-#include "PID.hpp"
+#include "trackController.hpp"
 
-// PID::PID(): integral(0), previousError(0){};
-
-char TrackController::ControllerCalculateOutput(int error, float deltaT, int direction)//jak zaimpelemntowac liczenie sterowania na poszczegolne kola???
+char TrackController::ControllerCalculateOutput(int error, float deltaT, int direction)
 {
-    // double output = k*(error+1/Ti*error*deltaT+(error-previousError)/deltaT);
     //ODWORTNIE DO WSKAZOWEK ZEGARA JEST MINUS NA ZYROSKOPIE, ZGODNIE JEST PLUS
-    switch (direction) //SPRAWDZIC TO WSZYSCO CO PONIZEJ, NA PEWNO COS JEST ZLE ZNAJAC ZYCIE
+    switch (direction)
     {
         case 0: //do przodu, error>0 - za bardzo w lewo, error<0 - za bardzo w prawo
             if (error>0) {return 'r';}
@@ -24,9 +21,3 @@ char TrackController::ControllerCalculateOutput(int error, float deltaT, int dir
             return 'r';      
     }
 }
-
-// void PID::reset()
-// {
-//     integral = 0;
-//     previousError = 0;
-// }
